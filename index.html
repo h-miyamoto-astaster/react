@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="likesButtonContainer"></div>
+	<script type="text/babel">
+		<Sample onClick = {() => {
+			console.log("処理を書いたよ");
+		}} />
+		const sampleFunc = () =>console.log("処理を書いたよ");
+		<sample onClick = {sampleFunc} />;
+		const LikeButton = () =>{
+			const [liked,setLiked] = react.useState(false);
+			const toggleLiked = () => setLiked(!liked);
+			return (
+				<button className ="likeButton" onClick={toggleliked}>
+				{liked ? "いいね済":"いいね前"}
+				</button>
+			);
+		};
+		
+		const domContainer = document.querySelector("#likesButtonContainer");
+		
+		ReactDOM.render(<LikeButton />,domContainer);
+	</script>
+	</body>
+</html>
