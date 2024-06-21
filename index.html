@@ -8,24 +8,35 @@
 	<body>
 		<div id="likesButtonContainer"></div>
 	<script type="text/babel">
-		<Sample onClick = {() => {
-			console.log("処理を書いたよ");
-		}} />
-		const sampleFunc = () =>console.log("処理を書いたよ");
-		<sample onClick = {sampleFunc} />;
-		const LikeButton = () =>{
-			const [liked,setLiked] = react.useState(false);
-			const toggleLiked = () => setLiked(!liked);
-			return (
-				<button className ="likeButton" onClick={toggleliked}>
-				{liked ? "いいね済":"いいね前"}
-				</button>
-			);
-		};
+		import React,{useState} from "react";
+		const LogoutButton = (props) => (
+			<button onClick = {props.toggleIsLoggedIn}>ログアウト</button>
+		);
 		
-		const domContainer = document.querySelector("#likesButtonContainer");
+		const LoginButton = (props) => (
+			<button onClick = {props.toggleIsLoggedIn}>ログアウト</button>
+		);
 		
-		ReactDOM.render(<LikeButton />,domContainer);
+		const LoginControl = () =>{
+			
+			const [isLoggedIn,setIsloggedInState] = useState(false);
+			
+			const toggleIsLoggedIn = () => {
+				setIsLoggedInState(!isLoggedIn);
+			};
+			
+			if(isLoggedIn){
+				return<LogoutButton toggleisLoggedIn = {toggleIsLoggedIn} />;
+			}
+			
+			return <LoginButton toggleIsLoggedIn={toggleIsLoggedIn} />;
+			
+		}
+		
+		export default function App(){
+		
+			return <LoginControl />;
+		}
 	</script>
 	</body>
 </html>
