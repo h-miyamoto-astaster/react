@@ -8,34 +8,34 @@
 	<body>
 		<div id="likesButtonContainer"></div>
 	<script type="text/babel">
-		import React,{useState} from "react";
-		const LogoutButton = (props) => (
-			<button onClick = {props.toggleIsLoggedIn}>ログアウト</button>
-		);
-		
-		const LoginButton = (props) => (
-			<button onClick = {props.toggleIsLoggedIn}>ログアウト</button>
-		);
-		
-		const LoginControl = () =>{
-			
-			const [isLoggedIn,setIsloggedInState] = useState(false);
-			
-			const toggleIsLoggedIn = () => {
-				setIsLoggedInState(!isLoggedIn);
+		import React, {useState} from "react";
+		import "./styles.css";
+		const InputText = () =>{
+				const [inputTextValue,setInputTextValue] = useState("");
+				
+				const [text,setText] = useState("JavaScript");
+				
+				const handleChange = (e) => setInputTextValue(e.target.value);
+				
+				const handleClick = () =>{
+					setText(inputTextValue);
+					setInputTextValue("");
+				}
+				return(
+				<div className="App">
+					
+					<h1>Ilove {text}!!</h1>
+					
+					<input type="text" value={inputTextValue} onChange={handleChange} />
+					
+					<input type="button" value="入力" onClick = {handleClick} />
+				</div>
+				);
 			};
-			
-			if(isLoggedIn){
-				return<LogoutButton toggleisLoggedIn = {toggleIsLoggedIn} />;
-			}
-			
-			return <LoginButton toggleIsLoggedIn={toggleIsLoggedIn} />;
-			
-		}
+		};
 		
 		export default function App(){
-		
-			return <LoginControl />;
+			return <InputText />;
 		}
 	</script>
 	</body>
