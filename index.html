@@ -17,34 +17,41 @@
 			{id:3,item:"JavaScript"}
 		]
 
-		const SelectItems = values.map((value) =>{
-			return (
-				<option value={value.item} key={value.id}>
-					{value.item}
-				</option>
-			);
-		});
-		const InputSelectBox = () =>{
-			const [selectedValue,setSelectedValue] = useState(values[0]["item"]);
+		const RadioBtnItems = ({onChange,checked}) =>{
+			values.map((value) => {
+				return(
+					<label key={value.id}>
+						<input
+							type="radio"
+							value={value.item}
+							onChange={onChange}
+							checked={checked === value.item}
+						/>
+						{value.item}
+					</label>
+				);
+			});
+		};
+
+		const InputRadio = () =>{
+			const [checkedValue,setCheckedValue] = useState(values[0]["item"]);
 			
 			const handleChange = (e) =>{
-				setSelectedValue(e.target.value);
+				setCheckedValue(e.target.value);
 			};
 
 			return (
 				<div className = "App">
 					<p>
 						現在選択されている値：
-						<b>{selectedValue}</b>
+						<b>{checkedValue}</b>
 					</p>
-					<select value={selectedValue} onChange={handleChange}>
-						{SelectItems}
-					</select>
+					<RadioBtnItems onChange={handleChange} checked={checkedValue} />
 				</div>
 			)
 		}
 		export default function App(){
-			return <InputSelectBox />;
+			return <InputRadio />;
 		}
 	</script>
 	</body>
