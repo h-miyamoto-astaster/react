@@ -33,16 +33,16 @@
 			});
 
 		const InputCheckBox = () =>{
-			const [checkedValues,setCheckedValue] = useState([]);
+			const [checkedValues,setCheckedValues] = useState([]);
 			
 			const handleChange = (e) =>{
 				if(checkedValues.includes(e.target.value)){
-					setChekedValues(
+					setCheckedValues(
 						checkedValues.filter((checkedValue) =>
-						checkedValue !== e.targeet.value)
+						checkedValue !== e.target.value)
 					);
 				}else{
-					setcheckedValues([...checkedValues,e.target.value]);
+					setCheckedValues([...checkedValues,e.target.value]);
 				}
 			};
 			
@@ -51,7 +51,7 @@
 					<p>
 						現在選択されている値：<b>{checkedValues.join("、")}</b>
 					</p>
-					<CheckBtnItems onChange={handleChange} checked={chekedValues} />
+					<CheckBtnItems onChange={handleChange} checked={checkedValues} />
 				</div>
 			);
 		}
