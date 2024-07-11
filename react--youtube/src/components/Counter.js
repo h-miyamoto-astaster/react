@@ -23,7 +23,7 @@ const Counter = () => {
    })
    }
 
-   //毎回実行される
+   
    useEffect(() =>{
       console.log("Current count is",count)
    },[count])
@@ -34,11 +34,6 @@ const Counter = () => {
       現在のカウント数:{count}
       </p>
       <button onClick={countUp}>up</button>
-      <button onClick={countDown}>down</button>
-      <p>
-      現在のカウント数:{count2}
-      </p>
-      <button onClick={count2Up}>up</button>
    </div>
   )
 }
