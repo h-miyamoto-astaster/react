@@ -32,7 +32,6 @@ const Timer = () => {
   return (
     <div className="App">
       <p>現在のカウント数:{count}</p>
-      
       <button onClick={countReset}>リセット</button>
     </div>
   );
