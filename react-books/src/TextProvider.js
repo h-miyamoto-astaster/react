@@ -1,11 +1,11 @@
-import React,{useContext} from 'react'
+import React,{createContext} from 'react'
 
 export const TextContext = createContext();
 
 const text = "これはProviderから渡されたテキストです。"
 const TextProvider = ({children}) => {
   return (
-    <TextContent.Provider value={text}>{children}</TextContent.Provider> 
+    <TextContext.Provider value={text}>{children}</TextContext.Provider> 
   )
 }
 

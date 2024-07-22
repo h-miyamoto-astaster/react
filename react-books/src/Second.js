@@ -1,4 +1,4 @@
-import {Third} from "./Third";
+import Third from "./Third";
 
 export const Second = () =>{
    return(
