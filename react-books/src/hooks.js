@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 
-const hooks = () => {
+export const useCounter = (initialCount) => {
   
-    const [count,useCount] = useState(initialCount)
+    const [count,setCount] = useState(initialCount)
 
     const countAdd = () => setCount((prevCount) => prevCount +1);
 
@@ -13,5 +13,3 @@ const hooks = () => {
     return {count,countAdd,countSub,countReset};
 
 }
-
-export default hooks

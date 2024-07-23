@@ -1,6 +1,6 @@
 import React from 'react'
 import {useCounter} from "./hooks";
-import {CounterText} from "./Countetext"
+import CounterText from "./CounterText"
 
 const CounterB = () => {
     const {count,countAdd,countSub,countReset} = useCounter(0);
