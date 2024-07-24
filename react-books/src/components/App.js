@@ -4,7 +4,7 @@ export default function App(){
 
   return(
       <>
-
+        <p>これからTodoアプリを実装します。</p>
       </>
   )
 };
