@@ -3,8 +3,8 @@ import React,{ useRef } from "react";
 import { useTodo } from "../hooks/useTodo";
 
 const TodoTitle = ({title,as}) =>{
-  if(as == "h1") return <h1>{title}</h1>;
-  if(as == "h2") return <h2>{title}</h2>;
+  if(as === "h1") return <h1>{title}</h1>;
+  if(as === "h2") return <h2>{title}</h2>;
   return <p>{title}</p>
 }
 
@@ -52,7 +52,7 @@ export default function App(){
   const inputEl = useRef(null);
 
   const handleAddTodoListItem = () => {
-    if(inputEl.current.value == "") return;
+    if(inputEl.current.value === "") return;
 
     addTodoListItem(inputEl.current.value);
     inputEl.current.value = "";
