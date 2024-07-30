@@ -1,3 +1,5 @@
+import React,{ useRef } from "react";
+
 import { useTodo } from "../hooks/useTodo";
 
 const TodoTitle = ({title,as}) =>{
@@ -6,12 +8,16 @@ const TodoTitle = ({title,as}) =>{
   return <p>{title}</p>
 }
 
-const TodoItem = ({todo}) =>{
+const TodoItem = ({todo,toggleTodoListItemStatus,deleteTodoListItem}) =>{
+  const handleToggleTodoListItemStatus = () => deleteTodoListItem(todo.id);
+
   return(
     <li>
       {todo.content}
-      <button>{todo.done ? "未完了リストへ" : "完了リストへ"}</button>
-      <button>削除</button>
+      <button onClick={handleToggleTodoListItemStatus}>
+        {todo.done ? "未完了リストへ" : "完了リストへ"}
+      </button>
+      <button onClick={handleDeleteTodoListItema}>削除</button>
     </li>
   );
 };
@@ -26,11 +32,32 @@ const TodoList = ({todoList}) =>{
   )
 }
 
+const TodoAdd = ({inputEl,handleAddTodoListItem}) =>{
+  return(
+    <>
+      <textarea ref={inputEl}/>
+
+      <button onClick={handleAddTodoListItem}>+ TODOを追加</button>
+    </>
+  );
+};
+
 export default function App(){
   
-  const { todoList } = useTodo();
+  const { todoList,addTodoListItem } = useTodo();
 
   console.log("TODOリスト：",todoList);
+
+  const inputEl = useRef(null);
+
+  const handleAddTodoListItem = () => {
+    if(inputEl.current.value == "") return;
+
+    addTodoListItem(inputEl.current.value);
+    inputEl.current.value = "";
+  };
+
+  console.log("TODOリスト:".todoList);
 
   const inCompletedList = todoList.filter((todo) =>{
     return !todo.done;
@@ -45,14 +72,16 @@ export default function App(){
   return(
       <>
         <TodoTitle title="TODO進捗管理" as="h1" />
-        <textarea />
-          
-          <button>+ TODOを追加</button>
-
-          <TodoTitle title="未完了TODOリスト" as="h2" />
-          <TodoList todoList={inCompletedList} />
-          <TodoTitle title="完了TODOリスト" as="h2" />
-          <TodoList todoList={CompletedList} />
+        
+        <TodoAdd inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
+        
+        <TodoTitle title="未完了TODOリスト" as="h2" />
+        
+        <TodoList todoList={inCompletedList} />
+        
+        <TodoTitle title="完了TODOリスト" as="h2" />
+        
+        <TodoList todoList={CompletedList} />
 
       </>
   );
