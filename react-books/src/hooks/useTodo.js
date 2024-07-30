@@ -1,7 +1,7 @@
 import React,{ useState,useEffect } from 'react';
 import {ulid} from "ulid";
 
-import * as todoData from "../apis/todo";
+import * as todoData from "../apis/todos";
 
 export const useTodo = () =>{
    const [todoList,setTodoList] = useState([]);
@@ -18,7 +18,7 @@ export const useTodo = () =>{
 
       const newTodoItem = {...todoItem,done:!done};
 
-      todoData.updateTodoData(id,newTodoItem),then((updatedTodo) =>{
+      todoData.updateTodoData(id,newTodoItem).then((updatedTodo) =>{
          const newTodoList = todoList.map((item) =>
             item.id !== updatedTodo.id ? item : updatedTodo
          );

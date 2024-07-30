@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const todoDataUrl = "http:/localhost:3100/todos";
+const todoDataUrl = "http://localhost:3100/todos";
 
 export const getAllTodosData = async() => {
    const response = await axios.get(todoDataUrl);
@@ -19,7 +19,7 @@ export const deleteTodoData = async(id) =>{
    return id;
 };
 
-export const updateData = async(id,todo) =>{
+export const updateTodoData = async(id,todo) =>{
    const response = await axios.put(`${todoDataUrl}/${id}`,todo);
    return response.data
 }
