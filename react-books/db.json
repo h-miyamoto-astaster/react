@@ -3,17 +3,17 @@
     {
       "id": "1",
       "content": "create React appをインストールする",
-      "done": false
+      "done": true
     },
     {
       "id": "2",
       "content": "JSON Server仮のAPIを作成する",
-      "done": false
+      "done": true
     },
     {
       "id": "3",
       "content": "Chakra UIをインストールする",
-      "done": true
+      "done": false
     }
   ]
 }
