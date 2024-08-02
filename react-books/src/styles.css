@@ -1,8 +1,7 @@
-.btn01{
-    display:block;
-    background-color:orange;
-    width:100px;
-    height:50px;
-    border-radius:25px;
-    color:white;
+.wrap{
+    width:100%;
+    max-width:830px;
+    margin:auto;
+    margin-top: 50px;
+    padding:0px 15px;
 }

@@ -38,14 +38,15 @@ export default function App(){
 
   return(
       <>
-        <TodoTitle title="TODO進捗管理" as="h1" />
+        <div className="wrap">
+          <TodoTitle title="TODO進捗管理" as="h1" />
         
-        <TodoAdd buttonText="+ TODOを追加" inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
+          <TodoAdd buttonText="+ TODOを追加" inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
              
-        <TodoList title="未完了TODOリスト" as="h2" todoList={inCompletedList} toggleTodoListItemStatus={toggleTodoListItemStatus} deleteTodoListItem = {deleteTodoListItem} />
+          <TodoList title="未完了TODOリスト" as="h2" todoList={inCompletedList} toggleTodoListItemStatus={toggleTodoListItemStatus} deleteTodoListItem = {deleteTodoListItem} />
         
-        <TodoList title="完了TODOリスト" as="h2" todoList={CompletedList} toggleTodoListItemStatus={toggleTodoListItemStatus} deleteTodoListItem = {deleteTodoListItem} />
-
+          <TodoList title="完了TODOリスト" as="h2" todoList={CompletedList} toggleTodoListItemStatus={toggleTodoListItemStatus} deleteTodoListItem = {deleteTodoListItem} />
+        </div>
       </>
   );
 };
