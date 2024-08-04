@@ -6,11 +6,20 @@ export const TodoTitle = memo(({title,as}) =>{
         font-size:30px;
         font-weight:bold;
         color:orange;
+        text-align:center;
+        @media screen and (max-width: 767px) {
+            font-size:25px;
+        }
     `;
     const Heading02 = styled.h2`
+        margin-top:80px;
         font-size:21px;
         font-weight:bold;
         color:green;
+        @media screen and (max-width: 767px) {
+            font-size:18px;
+            text-align:center;
+        }
     `;
     if(as === "h1") return <Heading01>{title}</Heading01>;
     if(as === "h2") return <Heading02>{title}</Heading02>;
