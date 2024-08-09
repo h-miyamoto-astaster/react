@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} ^/root(/.*)?$
+RewriteRule .* /php-json-server/php-json-server.php?path=$0 [L]
