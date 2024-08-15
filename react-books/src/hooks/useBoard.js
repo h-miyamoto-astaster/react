@@ -2,7 +2,7 @@ import {useState,useEffect} from "react";
 
 import {ulid} from "ulid";
 
-import * as boardData from "../api/boards";
+import * as boardData from "../api/board";
 
 export const useBoard = () =>{
    const [boardList,setBoardList] = useState([]);
@@ -13,11 +13,11 @@ export const useBoard = () =>{
       });
     },[]);
 
-    const addBoardListItem = (boardContent) =>{
+    const addBoardListItem = (boardContent,username) =>{
       const newBoardItem = {
          content:boardContent,
          id:ulid(),
-         done:false
+         name:username
       };
 
       return boardData.addBoardData(newBoardItem).then((addWrite) =>{

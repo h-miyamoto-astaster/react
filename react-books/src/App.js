@@ -1,7 +1,6 @@
-import { useState,useEffect } from "react";
+import { useRef } from "react";
 import { useBoard } from "./hooks/useBoard";
 
-const boardDataUrl = "http://localhost:3100/todos"
 
 const WriteTitle = ({title,as}) =>{
   if(as === "h1") return <h1>{title}</h1>
@@ -9,32 +8,51 @@ const WriteTitle = ({title,as}) =>{
   return <p>{title}</p>
 };
 
-const BoardItem = ({write}) =>{
+const BoardItem = ({write,deleteBoardListItem}) =>{
+
+  const handleDeleteBoardListItem = () =>{
+    deleteBoardListItem(write.id);
+  }
   return(
     <li>
       {write.content}
-      <button>{write.done ? "未完了リストへ": "完了リストへ"}</button>
-      <button>削除</button>
+      <div>{write.name}</div>
+      <button onClick={handleDeleteBoardListItem}>削除</button>
     </li>
   )
 }
 
 function App() {
-  const  {boardList} = useBoard();
+  const  {boardList,addBoardListItem,deleteBoardListItem} = useBoard();
   console.log("Boardリスト",boardList);
+  const inputEl = useRef(null);
+  const nameEl = useRef(null);
+
+  const handleAddBoardListItem = () =>{
+    if(inputEl.current.value === "") return;
+    if(nameEl.current.value === "") {
+      nameEl.current.value = "名無しさん"
+    };
+    addBoardListItem(inputEl.current.value,nameEl.current.value);
+    inputEl.current.value="";
+    nameEl.current.value="";
+  }
+
   return (
     <>
-      <writeTitle title="React掲示板" as="h1"/>
+      <WriteTitle title="React掲示板" as="h1"/>
 
-      <textarea />
+      <textarea ref={inputEl} />
 
-      <button>書き込む</button>
+      <textarea ref={nameEl} />
 
-      <writeTitle title="書き込み" as="h2"/>
+      <button onClick={handleAddBoardListItem}>書き込む</button>
+
+      <WriteTitle title="書き込み" as="h2"/>
 
       <ul>
         {boardList.map((write) => (
-          <BoardItem write={write} key={write.id} />
+          <BoardItem write={write} key={write.id} deleteBoardListItem={deleteBoardListItem}/>
         ))}
       </ul>
     </>
