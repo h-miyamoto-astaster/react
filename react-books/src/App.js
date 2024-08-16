@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useBoard } from "./hooks/useBoard";
+import styled from 'styled-components';
 
 
 const WriteTitle = ({title,as}) =>{
@@ -13,12 +14,16 @@ const BoardItem = ({write,deleteBoardListItem}) =>{
   const handleDeleteBoardListItem = () =>{
     deleteBoardListItem(write.id);
   }
+  const Box01 = styled.div`
+    padding:15px 10px;
+    border-top:1px solid dimgray;
+  `
   return(
-    <li>
+    <Box01>
       {write.content}
       <div>{write.name}</div>
       <button onClick={handleDeleteBoardListItem}>削除</button>
-    </li>
+    </Box01>
   )
 }
 
@@ -38,23 +43,38 @@ function App() {
     nameEl.current.value="";
   }
 
+  const Btn01 = styled.button`
+  display:block;
+  width:300px;
+  height:35px;
+  line-height:35px;
+  margin:auto;
+  margin-top:50px;
+  padding:0px 15px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+`
+
   return (
     <>
-      <WriteTitle title="React掲示板" as="h1"/>
+      <div className="boardWrap">
+        <WriteTitle title="React掲示板" as="h1"/>
 
-      <textarea ref={inputEl} />
+        <textarea ref={inputEl} />
 
-      <textarea ref={nameEl} />
+        <textarea ref={nameEl} />
 
-      <button onClick={handleAddBoardListItem}>書き込む</button>
+        <Btn01 onClick={handleAddBoardListItem}>書き込む</Btn01>
 
-      <WriteTitle title="書き込み" as="h2"/>
+        <WriteTitle title="書き込み" as="h2"/>
 
-      <ul>
-        {boardList.map((write) => (
-          <BoardItem write={write} key={write.id} deleteBoardListItem={deleteBoardListItem}/>
-        ))}
-      </ul>
+        <div>
+          {boardList.map((write) => (
+            <BoardItem write={write} key={write.id} deleteBoardListItem={deleteBoardListItem}/>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
