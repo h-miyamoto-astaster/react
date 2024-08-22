@@ -6,12 +6,12 @@ import * as boardData from "../api/board";
 
 export const useBoard = () =>{
    const [boardList,setBoardList] = useState([]);
-
    useEffect(() => {
       boardData.getAllBoardData().then((write) =>{
          setBoardList([...write].reverse());
       });
     },[]);
+    
 
     const addBoardListItem = (boardContent,username) =>{
       const newBoardItem = {

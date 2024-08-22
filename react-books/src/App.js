@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef,useEffect } from "react";
 import { useBoard } from "./hooks/useBoard";
 import styled from 'styled-components';
 
@@ -59,13 +59,15 @@ const BoardItem = ({write,deleteBoardListItem}) =>{
 function App() {
   const  {boardList,addBoardListItem,deleteBoardListItem} = useBoard();
   console.log("Boardリスト",boardList);
+  let writeMax = 8;
   const inputEl = useRef(null);
   const nameEl = useRef(null);
 
   const handleAddBoardListItem = () =>{
-    let writeLen = 10;
-    if(writeLen > 7) {
-      document.querySelector("#writeAlert").textContent("テスト");
+    let writeLen = boardList.length;
+    if(writeLen > writeMax) {
+      document.querySelector("#writeAlert").textContent= "※これ以上書き込めません";
+      return;
     };
     if(inputEl.current.value === "") return;
 
@@ -76,6 +78,15 @@ function App() {
     inputEl.current.value="";
     nameEl.current.value="";
   }
+
+  const WriteMaxText = () =>{
+    useEffect(() => {
+       document.querySelector("#writeLimit").textContent= `※書き込みは${writeMax}件までです。`;
+     },[]);
+     return(
+       <p id="writeLimit"></p>
+     )
+ }
 
   const Btn01 = styled.button`
     display:block;
@@ -131,6 +142,8 @@ function App() {
             <WriteTextarea ref={inputEl} />
 
             <Btn01 onClick={handleAddBoardListItem}>書き込む</Btn01>
+            {/*<p id="writeLimit"></p>*/}
+            <WriteMaxText />
             <p id="writeAlert"></p>
           </WriteArea>
         </div>
