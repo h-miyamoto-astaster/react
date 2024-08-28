@@ -4,6 +4,8 @@ import axios from "axios";
 
 const newsDataUrl = "http://localhost:3100/news";
 
+import { useNews } from "./useNews" ;
+
 export function App() {
   const [newsList,setNewsList] = useState([]);
 
