@@ -1,12 +1,55 @@
+import React, { useState,useEffect } from "react";
 
-//import './style.css';
+import axios from "axios";
 
-function App() {
+const newsDataUrl = "http://localhost:3100/news";
+
+export function App() {
+  const [newsList,setNewsList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async() =>{
+
+      const response = await axios.get(newsDataUrl);
+      setNewsList(response.data);
+    };
+    fetchData();
+  },[]);
+  
   return (
-    <div className="App">
-     <p>react-test</p>
-    </div>
+    <>
+      {newsList.map((news) =>(
+        <a href="#" className="news-box__container" key={news.id}>
+          <div className="news-box__day">{news.date}</div><p className="news-box__text">{news.content}</p>
+        </a>
+      ))}
+    </>
   );
 }
 
-export default App;
+export function AdminApp() {
+  const [newsList,setNewsList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async() =>{
+
+      const response = await axios.get(newsDataUrl);
+      setNewsList(response.data);
+    };
+    fetchData();
+  },[]);
+  console.log("これはadminapp");
+
+  return (
+    <>
+      {newsList.map((news) =>(
+        <a href="#" className="news-box__container" key={news.id}>
+          <div className="news-box__day">{news.date}</div><p className="news-box__text">{news.content}</p>
+        </a>
+      ))}
+    </>
+  );
+}
+
+
+//export const App = App;
