@@ -17,7 +17,7 @@ export const addNewsData = async(newses) =>{
 }
 
 export const deleteNewsData = async(id) =>{
-
+   console.log(id);
    await axios.delete(`${newsDataUrl}/${id}`);
 
    return id;

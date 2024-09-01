@@ -2,19 +2,19 @@ import React, { useState,useEffect } from "react";
 
 import {ulid} from "ulid";
 
-import * as newsData from "../apis/news";
+import * as newsData from "./apis/news";
 
 export const useNews = () =>{
    const [newsList,setNewsList] = useState([]);
 
    useEffect(() => {
       newsData.getAllNewsData().then((newses) =>{
-         setNewsList([...newses].reverse());
+         setNewsList(newses);
       });
    },[]);
 
    const addNewsListItem = (newsContent) => {
-      const newListItem = {
+      const newNewsItem = {
          content:newsContent,
          id:ulid(),
          date:"2024.08.28"
@@ -30,7 +30,7 @@ export const useNews = () =>{
          const newNewsList = newsList.filter(
             (item) => item.id !== deleteNewsItemId
          );
-         setNewsList(newNewsList)
+         setNewsList(newNewsList);
       });
    }
 
