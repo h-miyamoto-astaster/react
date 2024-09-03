@@ -13,11 +13,11 @@ export const useNews = () =>{
       });
    },[]);
 
-   const addNewsListItem = (newsContent) => {
+   const addNewsListItem = (newsContent,newsDate) => {
       const newNewsItem = {
          content:newsContent,
          id:ulid(),
-         date:"2024.08.28"
+         date:newsDate
       };
 
       return newsData.addNewsData(newNewsItem).then((addNews) =>{

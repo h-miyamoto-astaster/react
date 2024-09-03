@@ -14,10 +14,11 @@ const NewsDelete = ({newsId,deleteNewsListItem}) => {
   );
 }
 
-const NewsAdd = ({ inputEl,handleAddNewsListItem }) => {
+const NewsAdd = ({ inputEl,dateEl,handleAddNewsListItem }) => {
   return (
     <>
       <textarea ref={inputEl} />
+      <textarea ref={dateEl} />
       <button onClick={handleAddNewsListItem}>Newsを追加</button>
     </>
   )
@@ -30,7 +31,7 @@ export function App() {
     const fetchData = async() =>{
 
       const response = await axios.get(newsDataUrl);
-      setNewsList(response.data);
+      setNewsList([...response.data].reverse());
     };
     fetchData();
   },[]);
@@ -50,11 +51,13 @@ export function AdminApp() {
   const {newsList,addNewsListItem,deleteNewsListItem} = useNews();
 
   const inputEl = useRef(null);
+  const dateEl = useRef(null);
 
   const handleAddNewsListItem = () =>{
-    if(inputEl.current.value === "") return;
-    addNewsListItem(inputEl.current.value);
+    if(inputEl.current.value === "" || dateEl.current.value === "") return;
+    addNewsListItem(inputEl.current.value,dateEl.current.value);
     inputEl.current.value = "";
+    dateEl.current.value = "";
   }
   //const [newsList,setNewsList] = useState([]);
 
@@ -79,7 +82,7 @@ export function AdminApp() {
         </React.Fragment>
       ))}
 
-      <NewsAdd inputEl={inputEl} handleAddNewsListItem={handleAddNewsListItem}/>
+      <NewsAdd inputEl={inputEl} dateEl={dateEl} handleAddNewsListItem={handleAddNewsListItem}/>
     </>
   );
 }
