@@ -79,7 +79,7 @@ export function AdminApp() {
         </React.Fragment>
       ))}
 
-      <NewsAdd />
+      <NewsAdd inputEl={inputEl} handleAddNewsListItem={handleAddNewsListItem}/>
     </>
   );
 }

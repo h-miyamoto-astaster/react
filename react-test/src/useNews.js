@@ -9,7 +9,7 @@ export const useNews = () =>{
 
    useEffect(() => {
       newsData.getAllNewsData().then((newses) =>{
-         setNewsList(newses);
+         setNewsList([...newses].reverse());
       });
    },[]);
 
