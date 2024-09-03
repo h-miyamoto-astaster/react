@@ -48,13 +48,18 @@ export function App() {
 }
 
 export function AdminApp() {
+  let alertArea = document.getElementById("newsAlert");
+
   const {newsList,addNewsListItem,deleteNewsListItem} = useNews();
 
   const inputEl = useRef(null);
   const dateEl = useRef(null);
 
   const handleAddNewsListItem = () =>{
-    if(inputEl.current.value === "" || dateEl.current.value === "") return;
+    if(inputEl.current.value === "" || dateEl.current.value === ""){
+      alertArea.textContent = "日付と内容を入力してください";
+      return;
+    };
     addNewsListItem(inputEl.current.value,dateEl.current.value);
     inputEl.current.value = "";
     dateEl.current.value = "";
@@ -83,6 +88,7 @@ export function AdminApp() {
       ))}
 
       <NewsAdd inputEl={inputEl} dateEl={dateEl} handleAddNewsListItem={handleAddNewsListItem}/>
+      <p id="newsAlert"></p>
     </>
   );
 }
