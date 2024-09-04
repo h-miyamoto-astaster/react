@@ -1,16 +1,6 @@
 {
   "news": [
     {
-      "id": "3",
-      "content": "ニュース3",
-      "date": "2023.02.02"
-    },
-    {
-      "id": "4",
-      "content": "ニュース4",
-      "date": "2023.02.02"
-    },
-    {
       "id": "5",
       "content": "ニュース5",
       "date": "2023.02.02"
@@ -36,14 +26,34 @@
       "date": "2024.08.28"
     },
     {
-      "id": "01J6SKQ2NH1M3DAASZSHJCEN8V",
-      "content": "ニュース11",
-      "date": "2024.08.28"
+      "id": "01J6XJZMYMT381EYTRPXN5DZ99",
+      "content": "2024.09.04",
+      "date": "ニュース11"
     },
     {
-      "id": "01J6VM2BGJZAB5ZZ5A9RVG2HPY",
+      "id": "01J6XK0VCGTR55YC45FTYTY4AN",
       "content": "ニュース12",
-      "date": "2024.08.29"
+      "date": "2024.09.04"
+    },
+    {
+      "id": "01J6XK37EEM1JKJM952E10C3BG",
+      "content": "ニュース13",
+      "date": "2024.09.04"
+    },
+    {
+      "id": "01J6XPN1SGK45AV26YXDT8V5F3",
+      "content": "ニュース14",
+      "date": "2024.09.04"
+    },
+    {
+      "id": "01J6XPP0V46VSWHZC69FSZGJSE",
+      "content": "ニュース15",
+      "date": "2024.09.04"
+    },
+    {
+      "id": "01J6XPPN1PT0JBETG3K94GSA34",
+      "content": "ニュース16",
+      "date": "2024.09.04"
     }
   ]
 }

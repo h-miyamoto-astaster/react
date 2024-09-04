@@ -17,8 +17,8 @@ const NewsDelete = ({newsId,deleteNewsListItem}) => {
 const NewsAdd = ({ inputEl,dateEl,handleAddNewsListItem }) => {
   return (
     <>
-      <textarea ref={inputEl} />
-      <textarea ref={dateEl} />
+      <textarea ref={inputEl} placeholder="ニュース内容"/>
+      <textarea ref={dateEl} placeholder="日付"/>
       <button onClick={handleAddNewsListItem}>Newsを追加</button>
     </>
   )
@@ -56,13 +56,19 @@ export function AdminApp() {
   const dateEl = useRef(null);
 
   const handleAddNewsListItem = () =>{
+    let newsNum = newsList.length;
+    if(newsNum >= 11){
+      alertArea.textContent = "※お知らせは10件までです。";
+      return;
+    }
     if(inputEl.current.value === "" || dateEl.current.value === ""){
-      alertArea.textContent = "日付と内容を入力してください";
+      alertArea.textContent = "※日付と内容を入力してください";
       return;
     };
     addNewsListItem(inputEl.current.value,dateEl.current.value);
     inputEl.current.value = "";
     dateEl.current.value = "";
+    alertArea.textContent = "";
   }
   //const [newsList,setNewsList] = useState([]);
 
