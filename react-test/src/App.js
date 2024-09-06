@@ -1,25 +1,82 @@
 import React, { useState,useEffect,useRef } from "react";
 
+import styled from 'styled-components';
+
 import axios from "axios";
 
 import { useNews } from "./useNews" ;
 
 const newsDataUrl = "http://localhost:3100/news";
 
+const DeleteBtn = styled.button`
+  display:block;
+  margin-top:5px;
+  margin-bottom:10px;
+  padding:5px 10px;
+  text-align:center;
+  border:1px solid #DD1B57;
+  color:#DD1B57;
+  transition:all 0.3s;
+  &:hover{
+    background-color:#DD1B57;
+    color:white;
+  }
+`;
+
+const InputSecrtion = styled.div`
+  margin-top:60px;
+  display:flex;
+  flex-direction:column;
+  column-gap:20px;
+`;
+
+const InputDate = styled.input`
+  display:block;
+  padding:5px 10px;
+  border:1px solid gray;
+`;
+
+const InputArea = styled.textarea`
+  display:block;
+  padding:5px 10px;
+  width:100%;
+  height:100px;
+  border:1px solid gray;
+`;
+
+const AddBtn = styled.button`
+  display:block;
+  width:200px;
+  height:50px;
+  line-height:50px;
+  margin:auto;
+  margin-top:25px;
+  font-weight:bold;
+  text-align:center;
+  border:1px solid #DD1B57;
+  color:#DD1B57;
+  transition:all 0.3s;
+  &:hover{
+    background-color:#DD1B57;
+    color:white;
+  }
+`;
 const NewsDelete = ({newsId,deleteNewsListItem}) => {
   const handleDleteNewsListItem = () => deleteNewsListItem(newsId);
 
   return (
-    <button onClick={handleDleteNewsListItem}>削除</button> 
+    <DeleteBtn onClick={handleDleteNewsListItem}>削除</DeleteBtn> 
   );
 }
 
 const NewsAdd = ({ inputEl,dateEl,handleAddNewsListItem }) => {
   return (
     <>
-      <textarea ref={inputEl} placeholder="ニュース内容"/>
-      <textarea ref={dateEl} placeholder="日付"/>
-      <button onClick={handleAddNewsListItem}>Newsを追加</button>
+      <InputSecrtion>
+        <InputDate ref={dateEl} placeholder="日付" maxLength="20"/>
+        <InputArea ref={inputEl} placeholder="ニュース内容" maxLength="200"/>
+      </InputSecrtion>
+        <AddBtn onClick={handleAddNewsListItem}>Newsを追加</AddBtn>
     </>
   )
 }
