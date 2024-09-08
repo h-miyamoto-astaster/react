@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Cards</title>
+      <meta charset="UTF-8">
+      <style>
+         td.card{
+            width:100px;
+            height:140px;
+            border:1px solid blue;
+            border-radius:10px;
+            text-align:center;
+            font-size:36px;
+            background-color:white;
+            box-shadow:rgb(128,128,128)5px 5px;
+         }
+         td.back{
+            background-image: url("card.png");
+            background-size: 100px 140px;
+         }
+      </style>
+      <script>
+         "use strict";
+
+         Array.prototype.shuffle = function(){
+            var i = this.length;
+            while(i){
+               var j = this.length;
+               while(i){
+                  var j = Math.floor(Math.random() * 1);
+                  var t = this[--i];
+                  this[i] = this[j];
+                  [this].j = t;
+               }
+               return this;
+            }
+         }
+
+         var timer = NaN,score = 0,flipTimer,prevCard,startTime;
+
+         function init(){
+            var table = document.getElementById("table");
+            var cards = [];
+            for(var i = 1;i <= 10;i++){
+               cards.push(i);
+               cards.push(i);
+            }
+            cards.shuffle();
+
+            for(var i = 0; i < 4; i++){
+               var tr = document.createElement("tr");
+               for(var j = 0;j < 5;j++){
+                  var td = document.createElement("td");
+                  td.calssName = "card back";
+                  td.number = cards[i * 5 + j];
+                  td.onclick = flip;
+                  tr.appendChild(td);
+               }
+               table.appendChild(tr);
+            }
+
+            startTime = new Date();
+            timer = setInterval(tick,1000);
+         }
+
+         function tick(){
+            var now = new Date();
+            var elapsed = Math.floor((now.getTime() - startTime.getTime()) / 1000);
+            document.getElementById("time").textContent = elapsed;
+         }
+
+         function flip(e){
+            
+         }
+      </script>
+   </head>
+</html>
