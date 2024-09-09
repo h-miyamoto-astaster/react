@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const newsDataUrl = "http://localhost:3100/news";
+const newsDataUrl = "https://test-m.ast-dev.net/root/";
 
 export const getAllNewsData = async() =>{
    
