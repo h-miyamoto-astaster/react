@@ -6,7 +6,7 @@ import axios from "axios";
 
 import { useNews } from "./useNews" ;
 
-const newsDataUrl = "https://test-m.ast-dev.net/root/";
+const newsDataUrl = "http://ebans.starfree.jp/root/";
 
 const DeleteBtn = styled.button`
   display:block;

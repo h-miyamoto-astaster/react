@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const newsDataUrl = "https://test-m.ast-dev.net/root/";
+const newsDataUrl = "http://ebans.starfree.jp/root/";
 
 export const getAllNewsData = async() =>{
    
