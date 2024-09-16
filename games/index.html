@@ -33,7 +33,7 @@
             return this;
          }
 
-         var timer = NaN,score = 0,flipTimer,prevCard,startTime;
+         var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,startTime;
 
          function init(){
             var table = document.getElementById("table");
@@ -48,9 +48,10 @@
                var tr = document.createElement("tr");
                for(var j = 0;j < 5;j++){
                   var td = document.createElement("td");
-                  td.calssName = "card back";
+                  td.className = "card back";
                   td.number = cards[i * 5 + j];
-                  td.onclick = flip;
+                  td.pass = i * 5 + j
+                  td.onclick = clicked;
                   tr.appendChild(td);
                }
                table.appendChild(tr);
@@ -68,10 +69,49 @@
 
          function flip(e){
             var src = e.srcElement;
-            if(flipTimer || src.textContext != ""){
+            if(flipTimer || src.textContent != ""){
                return;
             }
             var num = src.number;
+            src.className = "card";
+            src.textContent = num;
+
+            if(prevCard == null){
+               prevCard = src;
+               clickable = true;
+               return;
+            }
+
+            if(prevCard.number == num){
+               if(++score == 10){
+                  clearInterval(timer);
+               }
+               prevCard = null;
+               clearTimeout(flipTimer);
+               clickable = true;
+            }else{
+               flipTimer = setTimeout(function(){
+                  src.className = "card back";
+                  src.textContent = "";
+                  prevCard.className = "card back";
+                  prevCard.textContent = "";
+                  prevCard = null;
+                  flipTimer = NaN;
+                  myturn = !myturn;
+                  clickable = true;
+               },1000);
+            }
+         }
+
+         function enemyFlip(){
+            let randamNum = Math.floor( Math.random() * 20 );
+            let td = document.querySelectorAll("td");
+            var src = td[randamNum];
+            if(flipTimer || src.textContent != ""){
+               return;
+            }
+            var num = src.number;
+            src.className = "card";
             src.textContent = num;
 
             if(prevCard == null){
@@ -88,12 +128,37 @@
             }else{
                flipTimer = setTimeout(function(){
                   src.className = "card back";
-                  src.textContext = "";
+                  src.textContent = "";
                   prevCard.className = "card back";
                   prevCard.textContent = "";
                   prevCard = null;
                   flipTimer = NaN;
+                  myturn = !myturn;
+                  console.log("マイターン！");
                },1000);
+            }
+         }
+
+         function clicked(e){
+            if(clickable == false){
+               console.log("ng");
+               return;
+            }
+            if(!myturn){
+               clickable = false;
+               let intervalCount = 0;
+               let enemyAct = setInterval(() =>{
+                  enemyFlip();
+                  intervalCount++;
+                  if(intervalCount == 2){
+                     clearInterval(enemyAct);
+                     clickable = true;
+                     console.log("クリッカブル");
+                  }
+               },1000);
+            }else{
+               clickable = false;
+               flip(e);
             }
          }
       </script>
