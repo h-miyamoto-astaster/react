@@ -103,7 +103,7 @@
             }
          }
 
-         function enemyFlip(){
+         async function enemyFlip(){
             let randamNum = Math.floor( Math.random() * 20 );
             let td = document.querySelectorAll("td");
             var src = td[randamNum];
@@ -135,6 +135,7 @@
                   flipTimer = NaN;
                   myturn = !myturn;
                   console.log("マイターン！");
+                  return "resolve";
                },1000);
             }
          }
@@ -148,13 +149,13 @@
                clickable = false;
                let intervalCount = 0;
                let enemyAct = setInterval(() =>{
-                  enemyFlip();
+                  enemyFlip().then();
                   intervalCount++;
                   if(intervalCount == 2){
                      clearInterval(enemyAct);
                      clickable = true;
                      console.log("クリッカブル");
-                  }
+                  };
                },1000);
             }else{
                clickable = false;
