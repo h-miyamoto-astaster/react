@@ -33,8 +33,8 @@
             return this;
          }
 
-         var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,startTime;
-
+         var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,prevPass,startTime;
+         let openedPass = [];
          function init(){
             var table = document.getElementById("table");
             var cards = [];
@@ -69,11 +69,14 @@
 
          function flip(e){
             var src = e.srcElement;
+            let passes = [];
             if(flipTimer || src.textContent != ""){
+               clickable = true;
                return;
             }
             var num = src.number;
             src.className = "card";
+            passes.push(src.pass);
             src.textContent = num;
 
             if(prevCard == null){
@@ -88,6 +91,8 @@
                }
                prevCard = null;
                clearTimeout(flipTimer);
+               openedPass.push(passes);
+               console.log(openedPass);
                clickable = true;
             }else{
                flipTimer = setTimeout(function(){
@@ -103,7 +108,7 @@
             }
          }
 
-         async function enemyFlip(){
+         function enemyFlip(){
             let randamNum = Math.floor( Math.random() * 20 );
             let td = document.querySelectorAll("td");
             var src = td[randamNum];
@@ -135,11 +140,17 @@
                   flipTimer = NaN;
                   myturn = !myturn;
                   console.log("マイターン！");
-                  return "resolve";
                },1000);
             }
          }
-
+         function stopEnemyFlip(){
+            enemyFlip();
+            setTimeout(function(){
+            clickable = true;
+            console.log("クリッカブル");
+            },1500);
+         }
+                     
          function clicked(e){
             if(clickable == false){
                console.log("ng");
@@ -149,13 +160,13 @@
                clickable = false;
                let intervalCount = 0;
                let enemyAct = setInterval(() =>{
-                  enemyFlip().then();
                   intervalCount++;
                   if(intervalCount == 2){
                      clearInterval(enemyAct);
-                     clickable = true;
-                     console.log("クリッカブル");
+                     stopEnemyFlip();
+                     return;
                   };
+                  enemyFlip();
                },1000);
             }else{
                clickable = false;
