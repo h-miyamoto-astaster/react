@@ -34,6 +34,8 @@
          }
 
          var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,prevPass,startTime;
+         let localPass = [];
+         //表になっているカード
          let openedPass = [];
          function init(){
             var table = document.getElementById("table");
@@ -69,14 +71,13 @@
 
          function flip(e){
             var src = e.srcElement;
-            let passes = [];
             if(flipTimer || src.textContent != ""){
                clickable = true;
                return;
             }
             var num = src.number;
             src.className = "card";
-            passes.push(src.pass);
+            localPass.push(src.pass);
             src.textContent = num;
 
             if(prevCard == null){
@@ -91,8 +92,9 @@
                }
                prevCard = null;
                clearTimeout(flipTimer);
-               openedPass.push(passes);
+               openedPass = openedPass.concat(localPass);
                console.log(openedPass);
+               localPass = [];
                clickable = true;
             }else{
                flipTimer = setTimeout(function(){
@@ -103,6 +105,7 @@
                   prevCard = null;
                   flipTimer = NaN;
                   myturn = !myturn;
+                  localPass = [];
                   clickable = true;
                },1000);
             }
@@ -110,12 +113,15 @@
 
          function enemyFlip(){
             let randamNum = Math.floor( Math.random() * 20 );
+            //表になっているカードは相手の開示対象から除外する
+
             let td = document.querySelectorAll("td");
             var src = td[randamNum];
             if(flipTimer || src.textContent != ""){
                return;
             }
             var num = src.number;
+            localPass.push(src.pass);
             src.className = "card";
             src.textContent = num;
 
@@ -129,6 +135,9 @@
                   clearInterval(timer);
                }
                prevCard = null;
+               openedPass = openedPass.concat(localPass);
+               console.log(openedPass);
+               localPass = [];
                clearTimeout(flipTimer);
             }else{
                flipTimer = setTimeout(function(){
@@ -139,6 +148,7 @@
                   prevCard = null;
                   flipTimer = NaN;
                   myturn = !myturn;
+                  localPass = [];
                   console.log("マイターン！");
                },1000);
             }
