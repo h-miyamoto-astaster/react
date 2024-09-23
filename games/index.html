@@ -18,6 +18,15 @@
             background-image: url("card.png");
             background-size: 100px 140px;
          }
+         #turnState{
+            margin-top: 0px;
+            font-size:18px;
+            font-weight: bold;
+         }
+         .timeText{
+            margin-bottom: 0px;
+            font-weight: bold;
+         }
       </style>
       <script>
          "use strict";
@@ -33,11 +42,14 @@
             return this;
          }
 
-         var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,prevPass,startTime;
+         var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,prevPass,firstPass,startTime,turnState;
          let localPass = [];
          //表になっているカード
          let openedPass = [];
+         //既に開かれたが、まだ表になっていないカード
+         let openedNum = [];
          function init(){
+            turnState = document.getElementById("turnState");
             var table = document.getElementById("table");
             var cards = [];
             for(var i = 1;i <= 10;i++){
@@ -53,6 +65,7 @@
                   td.className = "card back";
                   td.number = cards[i * 5 + j];
                   td.pass = i * 5 + j
+                  td.opened = false;
                   td.onclick = clicked;
                   tr.appendChild(td);
                }
@@ -67,6 +80,15 @@
             var now = new Date();
             var elapsed = Math.floor((now.getTime() - startTime.getTime()) / 1000);
             document.getElementById("time").textContent = elapsed;
+         }
+
+         function turnChange(){
+            myturn = !myturn;
+            if(myturn){
+               turnState.textContent = "自分のターン";
+            }else{
+               turnState.textContent = "相手のターン";
+            }
          }
 
          function flip(e){
@@ -104,7 +126,7 @@
                   prevCard.textContent = "";
                   prevCard = null;
                   flipTimer = NaN;
-                  myturn = !myturn;
+                  turnChange();
                   localPass = [];
                   clickable = true;
                },1000);
@@ -112,11 +134,40 @@
          }
 
          function enemyFlip(){
-            let randamNum = Math.floor( Math.random() * 20 );
+            let randomNum = Math.floor( Math.random() * 20 );
             //表になっているカードは相手の開示対象から除外する
-
+            while(openedPass.includes(randomNum) || randomNum == firstPass){
+               if(openedPass.length == 20){
+                  return;
+               }
+               if(randomNum == 19){
+                  randomNum = 0;
+               }else{
+                  randomNum++;
+               }
+            }
             let td = document.querySelectorAll("td");
-            var src = td[randamNum];
+
+            
+            //2枚目、１枚目と同じ数字のカードを選んで開示するパターン
+            if(prevCard){
+               let target = prevCard.number;
+               let i = 0;
+               while(td[i].number == target){
+                  if(td[i].number == target){
+                     prevCard = null;
+                     openedPass = openedPass.concat(localPass);
+                     console.log(openedPass);
+                     localPass = [];
+                     firstPass = null;
+                     clearTimeout(flipTimer);
+                  }else{
+                     i++;
+                  }
+               }
+            }
+
+            var src = td[randomNum];
             if(flipTimer || src.textContent != ""){
                return;
             }
@@ -125,11 +176,14 @@
             src.className = "card";
             src.textContent = num;
 
+            //1枚目
             if(prevCard == null){
                prevCard = src;
+               firstPass = src.pass;
                return;
             }
 
+            //2枚目
             if(prevCard.number == num){
                if(++score == 10){
                   clearInterval(timer);
@@ -138,6 +192,7 @@
                openedPass = openedPass.concat(localPass);
                console.log(openedPass);
                localPass = [];
+               firstPass = null;
                clearTimeout(flipTimer);
             }else{
                flipTimer = setTimeout(function(){
@@ -147,8 +202,9 @@
                   prevCard.textContent = "";
                   prevCard = null;
                   flipTimer = NaN;
-                  myturn = !myturn;
+                  turnChange();
                   localPass = [];
+                  firstPass = null;
                   console.log("マイターン！");
                },1000);
             }
@@ -160,7 +216,7 @@
             console.log("クリッカブル");
             },1500);
          }
-                     
+            
          function clicked(e){
             if(clickable == false){
                console.log("ng");
@@ -187,8 +243,9 @@
    </head>
    <body onload="init()">
       <table id ="table"></table>
-      <h2>
+      <p class="timeText">
          経過時間:<span id="time">0</span>秒
-      </h2>
+      </p>
+      <p id="turnState"></p>
    </body>
 </html>
