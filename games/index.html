@@ -27,6 +27,11 @@
             margin-bottom: 0px;
             font-weight: bold;
          }
+         .scoreArea{
+            margin:0;
+            padding:0;
+            margin-top: 10px;
+         }
       </style>
       <script>
          "use strict";
@@ -43,6 +48,8 @@
          }
 
          var timer = NaN,score = 0,myturn = true,clickable = true,flipTimer,prevCard,prevPass,firstPass,startTime,turnState;
+         let myScore = 0;
+         let enemyScore = 0;
          let localPass = [];
          //表になっているカード
          let openedPass = [];
@@ -89,6 +96,15 @@
             }else{
                turnState.textContent = "相手のターン";
             }
+            if(openedPass == 20){
+               turnState.textContent = "ゲームエンド！";
+               clearInterval(timer);
+            }
+         }
+
+         function scoreChange(){
+            document.getElementById("myScore").textContent = myScore;
+            document.getElementById("enemyScore").textContent = enemyScore;
          }
 
          function flip(e){
@@ -117,6 +133,7 @@
                openedPass = openedPass.concat(localPass);
                console.log(openedPass);
                localPass = [];
+               scoreChange();
                clickable = true;
             }else{
                flipTimer = setTimeout(function(){
@@ -128,6 +145,7 @@
                   flipTimer = NaN;
                   turnChange();
                   localPass = [];
+                  myScore = myScore + 2;
                   clickable = true;
                },1000);
             }
@@ -151,22 +169,38 @@
             
             //2枚目、１枚目と同じ数字のカードを選んで開示するパターン
             if(prevCard){
-               let target = prevCard.number;
-               let i = 0;
-               while(td[i].number == target){
-                  if(td[i].number == target){
-                     prevCard = null;
-                     openedPass = openedPass.concat(localPass);
-                     console.log(openedPass);
-                     localPass = [];
-                     firstPass = null;
-                     clearTimeout(flipTimer);
-                  }else{
-                     i++;
+               if(randomNum >= 10){
+                  let target = prevCard.number;
+                  console.log(target);
+                  let i = 0;
+                  console.log(td[i].number);
+                  while(i <= 19){
+                     console.log(i);
+                     if(i !== prevCard.pass){
+                        if(td[i].number == target){
+                           var src = td[i];
+                           var num = src.number;
+                           localPass.push(src.pass);
+                           src.className = "card";
+                           src.textContent = num;
+                           console.log("発動");
+                           prevCard = null;
+                           openedPass = openedPass.concat(localPass);
+                           console.log(openedPass);
+                           localPass = [];
+                           scoreChange();
+                           firstPass = null;
+                           clearTimeout(flipTimer);
+                           return;
+                        }else{
+                           i++;
+                        }
+                     }else{
+                        i++;
+                     }
                   }
                }
             }
-
             var src = td[randomNum];
             if(flipTimer || src.textContent != ""){
                return;
@@ -247,5 +281,7 @@
          経過時間:<span id="time">0</span>秒
       </p>
       <p id="turnState"></p>
+      <p class="scoreArea"><span id="myScore">0</span></p>
+      <p class="scoreArea"><span id="enemyScore">0</span></p>
    </body>
 </html>
