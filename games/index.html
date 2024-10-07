@@ -18,6 +18,15 @@
             background-image: url("card.png");
             background-size: 100px 140px;
          }
+         td.mine{
+            background-color: #98fb98;
+         }
+         td.enemys{
+            background-color: #ffe4e1;
+         }
+         td.others{
+            background-color: #e0ffff;
+         }
          #turnState{
             margin-top: 0px;
             font-size:18px;
@@ -30,7 +39,13 @@
          .scoreArea{
             margin:0;
             padding:0;
-            margin-top: 10px;
+            margin-top: 5px;
+            font-weight:bold;
+            font-size:13px;
+         }
+         .scoreArea span{
+            padding-left: 10px;
+            font-size:16px;
          }
       </style>
       <script>
@@ -54,7 +69,7 @@
          //表になっているカード
          let openedPass = [];
          //既に開かれたが、まだ表になっていないカード
-         let openedNum = [];
+         let openedNumsPass = [];
          function init(){
             turnState = document.getElementById("turnState");
             var table = document.getElementById("table");
@@ -107,6 +122,15 @@
             document.getElementById("enemyScore").textContent = enemyScore;
          }
 
+         function openedNumsPassPush(source){
+               //一度開いたカードを記憶する
+               openedNumsPass.push(prevCard.pass);
+               openedNumsPass.push(source.pass);
+               //openedNumsPassの重複を削除する
+               openedNumsPass = Array.from(new Set(openedNumsPass));
+               console.log("openedNumsPass:" + openedNumsPass);
+         }
+
          function flip(e){
             var src = e.srcElement;
             if(flipTimer || src.textContent != ""){
@@ -118,25 +142,33 @@
             localPass.push(src.pass);
             src.textContent = num;
 
+            //1枚目
             if(prevCard == null){
                prevCard = src;
                clickable = true;
                return;
             }
 
+            //2枚目、当たりパターン
             if(prevCard.number == num){
                if(++score == 10){
                   clearInterval(timer);
                }
+               prevCard.classList.add("mine");
+               src.classList.add("mine");
                prevCard = null;
                clearTimeout(flipTimer);
                openedPass = openedPass.concat(localPass);
-               console.log(openedPass);
+               console.log("openedPass:" + openedPass);
                localPass = [];
-               scoreChange();
+               myScore = myScore + 2;
+               scoreChange(myScore);
                clickable = true;
+            //2枚目、外れパターン
             }else{
                flipTimer = setTimeout(function(){
+                  openedNumsPassPush(src);
+
                   src.className = "card back";
                   src.textContent = "";
                   prevCard.className = "card back";
@@ -145,7 +177,6 @@
                   flipTimer = NaN;
                   turnChange();
                   localPass = [];
-                  myScore = myScore + 2;
                   clickable = true;
                },1000);
             }
@@ -153,9 +184,12 @@
 
          function enemyFlip(){
             let randomNum = Math.floor( Math.random() * 20 );
+            let enemyCount = 0;
             //表になっているカードは相手の開示対象から除外する
             while(openedPass.includes(randomNum) || randomNum == firstPass){
                if(openedPass.length == 20){
+                  turnState.textContent = "ゲームエンド！";
+                  clearInterval(timer);
                   return;
                }
                if(randomNum == 19){
@@ -164,43 +198,74 @@
                   randomNum++;
                }
             }
+            
+            //1枚目、既に開かれたが、まだ表になっていないカードは優先的には開かない
+            while(openedPass.includes(randomNum) || openedNumsPass.includes(randomNum) || randomNum == firstPass){
+               if(openedNumsPass.length == 20){
+                  console.log("break");
+                  break;
+               }
+               if(randomNum == 19){
+                  randomNum = 0;
+               }else{
+                  randomNum++;
+               }
+               enemyCount++;
+               if(enemyCount >= 20){
+                  if(!openedPass.includes(randomNum)){
+                     break;
+                  }
+               }
+            }
             let td = document.querySelectorAll("td");
 
-            
-            //2枚目、１枚目と同じ数字のカードを選んで開示するパターン
+            //2枚目、一度開いたカードを選んで開く
             if(prevCard){
-               if(randomNum >= 10){
-                  let target = prevCard.number;
-                  console.log(target);
-                  let i = 0;
-                  console.log(td[i].number);
-                  while(i <= 19){
-                     console.log(i);
-                     if(i !== prevCard.pass){
-                        if(td[i].number == target){
-                           var src = td[i];
+               let newOpened = Array.from(new Set(openedNumsPass));
+               //対象は一度開いたがまだ開いていないカード
+               let subject = newOpened.filter(value =>{
+                  return !openedPass.includes(value);
+               });
+               console.log(subject);
+               console.log(td[1].number);
+               let subjectNum = [];
+               for(let i = 0; i < subject.length ;i++){
+                  let s = subject[i];
+                  subjectNum.push(td[s].number);
+               }
+               console.log("これはsubjectNum");
+               console.log(subjectNum);
+               //1枚目の数字が一度開いたカードならそれを開く
+               if(subjectNum.includes(prevCard.number)){
+                  for(let j = 0;j <= subjectNum.length; j++){
+                     if(subjectNum[j] == prevCard.number){
+                        let select = subject[j];
+                        console.log("miss");
+                        if(prevCard.pass !== select){
+                           var src = td[select];
                            var num = src.number;
                            localPass.push(src.pass);
                            src.className = "card";
                            src.textContent = num;
                            console.log("発動");
+                           console.log("");
+                           prevCard.classList.add("enemys");
+                           src.classList.add("enemys");
                            prevCard = null;
                            openedPass = openedPass.concat(localPass);
                            console.log(openedPass);
                            localPass = [];
-                           scoreChange();
+                           enemyScore = enemyScore + 2;
+                           scoreChange(enemyScore);
                            firstPass = null;
                            clearTimeout(flipTimer);
                            return;
-                        }else{
-                           i++;
                         }
-                     }else{
-                        i++;
                      }
                   }
                }
             }
+
             var src = td[randomNum];
             if(flipTimer || src.textContent != ""){
                return;
@@ -217,19 +282,28 @@
                return;
             }
 
-            //2枚目
+            //2枚目、当たりパターン
             if(prevCard.number == num){
                if(++score == 10){
                   clearInterval(timer);
                }
+               prevCard.classList.add("enemys");
+               src.classList.add("enemys");
                prevCard = null;
                openedPass = openedPass.concat(localPass);
-               console.log(openedPass);
+               //openedPassの重複を削除する
+               //openedPass = Array.from(new Set(openedPass));
+               console.log("openedPass*" + openedPass);
                localPass = [];
                firstPass = null;
+               enemyScore = enemyScore + 2;
+               scoreChange(enemyScore);
                clearTimeout(flipTimer);
+            //2枚目、外れパターン
             }else{
                flipTimer = setTimeout(function(){
+                  openedNumsPassPush(src);
+
                   src.className = "card back";
                   src.textContent = "";
                   prevCard.className = "card back";
@@ -281,7 +355,7 @@
          経過時間:<span id="time">0</span>秒
       </p>
       <p id="turnState"></p>
-      <p class="scoreArea"><span id="myScore">0</span></p>
-      <p class="scoreArea"><span id="enemyScore">0</span></p>
+      <p class="scoreArea">MyScore<span id="myScore">0</span></p>
+      <p class="scoreArea">EnemyScore<span id="enemyScore">0</span></p>
    </body>
 </html>
