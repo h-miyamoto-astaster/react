@@ -47,7 +47,7 @@
 .newsLink{
   position:absolute;
   right:-40px;
-  bottom:-40px;
+  bottom:40px;
 }
 
 .list{
@@ -74,7 +74,7 @@
 .newsItemTitle{
   font-size:1.1rem;
   font-weight: bold;
-  border-radius:var(--border-radius);
+  margin-bottom: 0.5rem;
 }
 
 .meta{
@@ -104,7 +104,7 @@
     width:calc(100% - 160px);
   }
 }
-@media (max-width: 640px) {
+/*@media (max-width: 640px) {
   .top {
     padding: 120px 16px;
   }
@@ -142,4 +142,4 @@
     bottom:-40px;
   }
 
-};
+};*/
