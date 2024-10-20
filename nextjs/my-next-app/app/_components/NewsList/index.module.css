@@ -31,24 +31,8 @@
     align-items:center;
     gap:16px;
 }
-  
-.tag{
-    background-color: var(--color-bg-sub);
-    padding:4px 12px;
-    border-radius:var(--border-radius);
-    white-space:nowrap;
-    font-size:1rem;
-}
-  
-.date{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:0.8rem 0;
-    font-size:1rem;
-}
 
-/*@media (max-width: 640px) {
+@media (max-width: 640px) {
   .link {
     display:block;
     padding:16px 0px;
@@ -68,4 +52,4 @@
         gap:16px;
     }
 
-};*/
+};
