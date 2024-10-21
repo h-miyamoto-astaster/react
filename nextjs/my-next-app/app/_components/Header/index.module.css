@@ -17,6 +17,11 @@
    width:auto;
 }
 
+.items{
+   display:flex;
+   color:white;
+   gap:40px;
+}
 @media (max-width:640px){
    .header{
       padding:24px 16px 8px;
