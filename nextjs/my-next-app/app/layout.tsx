@@ -12,7 +12,7 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Header />
-        {children}
+          {children}
         <Footer />
       </body>
     </html>
