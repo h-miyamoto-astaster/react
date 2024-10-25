@@ -1,0 +1,36 @@
+.board{
+    position:relative;
+    width:calc(100% - 30px);
+    max-width:600px;
+    height:500px;
+    margin:auto;
+    margin-top: 60px;
+    background-color: green;
+}
+.enemyarea{
+    position:absolute;
+    top:10px;
+    left:0;
+    right:0;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    column-gap:30px;
+    width:100%;
+}
+.myarea{
+    position:absolute;
+    bottom:10px;
+    right:0;
+    left:0;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    column-gap:30px;
+    width:100%;
+}
+.card{
+    width:100px;
+    height:150px;
+    background-color: white;
+}
