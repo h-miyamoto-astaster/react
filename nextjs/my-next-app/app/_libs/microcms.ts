@@ -18,7 +18,7 @@ if(!process.env.MICROCMS_API_KEY){
 
 const client = createClient({
   serviceDomain:process.env.MICROCMS_SERVICE_DOMAIN,
-  apikey:process.env.MICROCMS_API_KEY,
+  apiKey:process.env.MICROCMS_API_KEY,
 });
 
 export const getMembersList = async(queries?:MicroCMSQueries) =>{
