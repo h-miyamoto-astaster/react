@@ -8,6 +8,27 @@ export type News = {
    createdAt:string;
 };
 
+if(!process.env.MICROCMS_SERVICE_DOMAIN){
+  throw new Error("MICROCMS_SERVICE_DOMAIN is required")
+}
+
+if(!process.env.MICROCMS_API_KEY){
+  throw new Error("MICROCMS_API_KEY is required")
+}
+
+const client = createClient({
+  serviceDomain:process.env.MICROCMS_SERVICE_DOMAIN,
+  apikey:process.env.MICROCMS_API_KEY,
+});
+
+export const getMembersList = async(queries?:MicroCMSQueries) =>{
+  const listData = await client.getList<Member>({
+    endpoint:"members",
+    queries,
+  });
+  return listData;
+}
+
 export type Category = {
   name:string;
 };
