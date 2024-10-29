@@ -29,6 +29,18 @@
     column-gap:30px;
     width:100%;
 }
+.btn01{
+    position:absolute;
+    bottom:-50px;
+    right:0;
+    display:block;
+    width:100px;
+    height:50px;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+    background-color: blue;
+}
 .dice01{
     position:relative;
     width:100px;
@@ -46,6 +58,21 @@
 }
 .dice01.oldman:before{
     background-image: url(../img/oldman01.png);
+    width:100%;
+    height:100%;
+}
+.dice01.oldman02:before{
+    background-image: url(../img/oldman02.png);
+    width:100%;
+    height:100%;
+}
+.dice01.oldman03:before{
+    background-image: url(../img/oldman03.png);
+    width:100%;
+    height:100%;
+}
+.dice01.princess:before{
+    background-image: url(../img/princess01.png);
     width:100%;
     height:100%;
 }
@@ -71,3 +98,16 @@
 .dice02.dice02-2:before{
     background-image: url(../img/dice02.png);
 }
+.dice02.dice02-3:before{
+    background-image: url(../img/dice03.png);
+}
+.dice02.dice02-4:before{
+    background-image: url(../img/dice04.png);
+}
+.dice02.dice02-5:before{
+    background-image: url(../img/dice05.png);
+}
+.dice02.dice02-6:before{
+    background-image: url(../img/dice06.png);
+}
+

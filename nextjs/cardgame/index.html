@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Oswald:wght@500&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js" defer></script>
 </head>
 <body onload="init()">
     <div class="board">
@@ -19,10 +19,11 @@
         </div>
 
         <div id="myarea" class="myarea">
-            <div class="dice01 oldman"></div>
+            <div class="dice01 oldman02"></div>
             <div class="dice02 dice02-1"></div>
             <div class="dice02 dice02-2"></div>
         </div>
+        <button class="btn01" id="btn01" onclick="set()">セット</button>
     </div>
 </body>
 </html>
