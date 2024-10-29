@@ -3,7 +3,8 @@ import styles from "./page.module.css";
 
 import NewsList from "@/app/_components/NewsList";
 import ButtonLink from "@/app/_components/ButtonLink";
-import { News } from "@/app/_libs/microcms";
+import { getNewsList } from "@/app/_libs/microcms";
+import { TOP_NEWS_LIMIT } from "@/app/_constants";
 
 const data:{
   contents:News[] } = {
@@ -37,9 +38,13 @@ const data:{
       },
     ],
   };
-export default function Home() {
-  const sliceData = data.contents.slice(0,2);
- const name = "世界";
+export default function async Home() {
+  
+  const data =await getNewsList({
+    limit: TOP_NEWS_LIMIT,
+  });
+  
+  const name = "世界";
  
   return (
     <>
@@ -58,7 +63,7 @@ export default function Home() {
   </section>
   <section className={styles.news}>
     <h2 className={styles.newsTitle}>News</h2>
-    <NewsList news={sliceData} />
+    <NewsList news={data.contents} />
 
     <div className={styles.newsLink}>
       <ButtonLink href="/news">もっと見る</ButtonLink>
