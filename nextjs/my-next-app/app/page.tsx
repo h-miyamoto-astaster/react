@@ -38,9 +38,9 @@ const data:{
       },
     ],
   };
-export default function async Home() {
+export default async function  Home() {
   
-  const data =await getNewsList({
+  const data = await getNewsList({
     limit: TOP_NEWS_LIMIT,
   });
   

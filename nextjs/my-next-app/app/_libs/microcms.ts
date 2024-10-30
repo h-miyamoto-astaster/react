@@ -46,7 +46,7 @@ export type Member = {
   image:MicroCMSImage;
 } & MicroCMSListContent;
 
-export const getNewList = async (queries?:MicroCMSQueries) =>{
+export const getNewsList = async (queries?:MicroCMSQueries) =>{
   const listData = await client
     .getList<News>({
       endpoint:"news",
