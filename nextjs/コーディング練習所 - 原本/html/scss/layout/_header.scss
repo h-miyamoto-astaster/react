@@ -1,0 +1,179 @@
+@use "../base" as b;
+
+.header{
+   position:relative;
+   width:100%;
+   height:90px;
+   padding:0px 65px;
+   @include b.mq(sm){
+      height:b.px2vw(60);
+      padding: 0px b.px2vw(20);
+   }
+   &__container{
+      display:flex;
+      align-items:center;
+      height:90px;
+      @include b.mq(sm){
+         height:b.px2vw(60);
+      }
+   }
+   &__logo{
+      display:block;
+      width:167px;
+      @include b.opacity;
+      @include b.mq(sm){
+         width:b.px2vw(107);
+      }
+   }
+   &__menulist{
+      display:flex;
+      align-items:center;
+      column-gap:30px;
+      height:90px;
+      margin-left: auto;
+      @include b.mq(sm){
+         display:none;
+      }
+   }
+   &__menu{
+      a{
+         display:block;
+         font-size:16px;
+         font-weight: bold;
+         &:hover{
+            color:b.$main-color;
+         }
+      }
+   }
+   &__btn{
+      display:none;
+      position:absolute;
+      right:0;
+      top:0;
+      z-index:2;
+      @include b.mq(sm){
+         display:block;
+         width:b.px2vw(60);
+         height:b.px2vw(60);
+      }
+   }
+   &-spmenu{
+      display:none;
+      position:fixed;
+      top:0;
+      right:0;
+      z-index:1;
+      color:white;
+      background-color: b.$main-color;
+      @include b.mq(sm){
+         display:block;
+         position:fixed;
+         top:0;
+         right:0;
+         width:b.px2vw(200);
+         height:100%;
+         transition:0.3s;
+         transform:translateX(100%);
+         &.active{
+            transform:translateX(0%);
+         }
+      }
+      &__inner{
+         @include b.mq(sm){
+            padding-top:b.px2vw(90) ;
+            padding-left:b.px2vw(40) ;
+         }
+      }
+      &__item{
+         a{
+            @include b.mq(sm){
+               display:block;
+               margin-top: b.px2vw(25);
+               font-size:b.px2vw(16);
+               font-weight: 700;
+               @include b.opacity();
+            }
+         }
+      }
+   }
+}
+/*ハンバーガーメニュー*/
+.openbtn1{
+   display:inline-block;
+   position: relative;/*ボタン内側の基点となるためrelativeを指定*/
+   background:b.$main-color;
+   cursor: pointer;
+   width:b.px2vw(60);
+   height:b.px2vw(60);
+ }
+ 
+ /*ボタン内側*/
+ .openbtn1 span{
+      display: inline-block;
+      transition: all .4s;/*アニメーションの設定*/
+      position: absolute;
+      left: 0;
+      right:0;
+      margin:auto;
+      height: b.px2vw(2);
+      background: #fff;
+      width: 50%;
+   }
+ 
+ .openbtn1 span:nth-of-type(1) {
+   top:b.px2vw(20); 
+ }
+ 
+ .openbtn1 span:nth-of-type(2) {
+   top:b.px2vw(30);
+ }
+ 
+ .openbtn1 span:nth-of-type(3) {
+   top:b.px2vw(40);
+ }
+ 
+ /*activeクラスが付与されると線が回転して×に*/
+ 
+ .openbtn1.active span:nth-of-type(1) {
+     top: b.px2vw(23);
+     left: b.px2vw(0);
+     transform: translateY(b.px2vw(6)) rotate(-45deg);
+     width: 60%;
+ }
+ 
+ .openbtn1.active span:nth-of-type(2) {
+   opacity: 0;/*真ん中の線は透過*/
+ }
+ 
+ .openbtn1.active span:nth-of-type(3){
+     top: b.px2vw(35);
+     left: b.px2vw(0);
+     transform: translateY(b.px2vw(-6)) rotate(45deg);
+     width: 60%;
+ }
+/*ハンバーガーメニューここまで*/
+.mv-single{
+   display:flex;
+   align-items:center;
+   width:100%;
+   height:190px;
+   background-image: url(./img/mv-single.jpg);
+   background-repeat: no-repeat;
+   background-size:cover;
+   background-position: center;
+   @include b.mq(sm){
+      height:b.px2vw(160);
+      background-image: url(./img/mv-single-sp.jpg);
+   }
+   &__title{
+      text-align:center;
+      margin:auto;
+      font-size:40px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color:white;
+      @include b.mq(sm){
+         font-size:b.px2vw(28);
+      }
+   }
+}

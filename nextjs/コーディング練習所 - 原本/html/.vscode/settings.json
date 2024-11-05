@@ -1,0 +1,21 @@
+
+{
+    "liveSassCompile.settings.formats": [ //Sassの出力内容の設定
+        {
+            "format": "expanded", // 出力されるCSSの形式。"expanded"は通常の読みやすい形式。"compressed"は圧縮形式
+            "extensionName": ".css", //style.cssとして出力
+            "savePath": "/" // .scssファイルからの相対的な出力先のフォルダを指定
+        },
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.excludeList": [ //対象外とするフォルダを指定
+        "**/node_modules/**",
+        ".vscode/**",
+        "**/html/cms/**"
+    ],
+    "liveSassCompile.settings.autoprefix": [ //ベンダープレフィックスの指定
+        // 作成された時の状態のベンダープレフィックス
+        "> 10%", // 全体のユーザーの10%以上が使用しているブラウザバージョンに対応
+        "last 1 versions" //各ブラウザの最新2バージョンに対応
+    ],
+}
