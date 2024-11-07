@@ -1,0 +1,56 @@
+@use "./function" as f;
+@use "./variables" as v;
+
+/* ==========================================================================
+  mixin
+  ========================================================================== */
+// break point
+// デフォルトはmdでレイアウト切り替え
+$breakpoints: (
+  'sm': (max-width: 767px),
+  'md': (min-width: 768px),
+  'lg': (min-width: 980px),
+  'xl': (min-width: 1200px),
+  'xxl': (min-width: 1300px),
+  'sm_landscape' : '(max-width: 812px) and (max-height: 576px) and (orientation: landscape)',
+  'sm_tall' : '(max-width: 539px) and (min-height: 700px) and (max-height: 1024px) and (orientation: portrait)' ,
+  'md_portrait' : '(min-width: 540px) and (max-width: 768px) and (max-height: 1024px) and (orientation: portrait)',
+  'ie11' :  '(min-width: 768px) and (-ms-high-contrast: none)'
+) !default;
+
+/* --------------------------------------------------------------------------
+  media query (SP（小）→ PC（大）の順に適用)
+  -------------------------------------------------------------------------- */
+@mixin mq($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+  @else {
+    @error "指定されたブレークポイントは定義されていません。" + "指定できるブレークポイントは次のとおりです。 -> #{map-keys($breakpoints)}";
+  }
+}
+@mixin opacity(){
+  transition:0.3s;
+  &:hover{
+    opacity:0.6;
+  }
+}
+@mixin inner(){
+  width:100%;
+  max-width:1150px;
+  margin:auto;
+  padding:0px 20px;
+  @include mq(sm){
+    max-width:initial;
+    padding:0px f.px2vw(20);
+  }
+}
+@mixin heading(){
+  font-size:32px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  color:v.$main-color;
+}

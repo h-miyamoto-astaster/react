@@ -1,0 +1,15 @@
+@use "base/function";
+@use "base/mixin.scss";
+@use "base/variables";
+@use "layout/header";
+@use "layout/footer";
+@use "project/index";
+@use "project/message";
+@use "project/about";
+img{
+   width:100%;
+}
+body{
+   color:#151515;
+   font-family: "Noto Sans JP", sans-serif;
+}

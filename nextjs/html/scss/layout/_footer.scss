@@ -1,0 +1,48 @@
+@use "../base/" as b;
+
+.footer{
+   margin-top: 100px;
+   padding:50px 0px;
+   color:white;
+   background-color: b.$main-color;
+   @include b.mq(sm){
+      margin-top: b.px2vw(60);
+      padding:b.px2vw(30) 0;
+   }
+   &__inner{
+      width:100%;
+      max-width:1150px;
+      margin:auto;
+      padding:0px 20px;
+      @include b.mq(sm){
+         max-width:initial;
+         padding:0 b.px2vw(20);
+      }
+   }
+   &__menu{
+      display:flex;
+      column-gap:40px;
+      @include b.mq(sm){
+         column-gap:b.px2vw(25);
+      }
+   }
+   &__menuitem{
+      a{
+         display:block;
+         font-size:14px;
+         font-weight: 700;
+         @include b.opacity();
+         @include b.mq(sm){
+            font-size:b.px2vw(12);
+         }
+      }
+   }
+   &__copy{
+      margin-top: 15px;
+      font-size:12px;
+      @include b.mq(sm){
+         margin-top: b.px2vw(15);
+         font-size:b.px2vw(10);
+      }
+   }
+}

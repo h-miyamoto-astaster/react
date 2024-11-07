@@ -1,0 +1,108 @@
+@use "../base" as b;
+
+.about-first{
+   margin-top: 80px;
+   @include b.mq(sm){
+      margin-top:b.px2vw(40);
+   }
+   &__inner{
+      @include b.inner();
+   }
+   &__table{
+      width:100%;
+      letter-spacing: 0.05em;
+      tr{
+         height:80px;
+         border-bottom:1px solid #DDDDDD;
+         @include b.mq(sm){
+            height:b.px2vw(60);
+         }
+      }
+      th{
+         width:250px;
+         padding-left: 30px;
+         vertical-align:middle;
+         font-size:15px;
+         @include b.mq(sm){
+            width:b.px2vw(110);
+            padding-left: 0;
+            font-size:b.px2vw(14);
+         }
+      }
+      td{
+         font-weight: 500;
+         font-size:15px;
+         vertical-align:middle;
+         @include b.mq(sm){
+            font-size:b.px2vw(14);
+            letter-spacing:1.5;
+         }
+      }
+   }
+}
+.about-second{
+   margin-top: 50px;
+   @include b.mq(sm){
+      margin-top: b.px2vw(50);
+   }
+   &__inner{
+      @include b.inner();
+   }
+   &__maptext{
+      display:block;
+      margin-top: 20px;
+      text-align:right;
+      font-size:15px;
+      font-weight: 500;
+      text-decoration:underline;
+      color:#349BF4;
+      @include b.mq(sm){
+         margin-top: b.px2vw(15);
+         font-size:b.px2vw(12);
+      }
+   }
+}
+.about-third{
+   margin-top: 80px;
+   @include b.mq(sm){
+      margin-top: b.px2vw(47);
+   }
+   &__inner{
+      @include b.inner();
+   }
+}
+.about-news{
+   &__container{
+      position:relative;
+      display:flex;
+      column-gap:40px;
+      padding:15px 0px;
+      border-bottom:1px solid #EDEDED;
+      @include b.opacity();
+      @include b.mq(sm){
+         flex-direction:column;
+         padding:b.px2vw(10) 0;
+      }
+      &:nth-of-type(1){
+         padding-top: 0px;
+      }
+   }
+   &__day{
+      flex-shrink:0;
+      font-size:15px;
+      line-height: 1.8;
+      @include b.mq(sm){
+         font-size:b.px2vw(15);
+      }
+   }
+   &__text{
+      flex-shrink:1;
+      font-size:15px;
+      font-weight: 500;
+      line-height: 1.8;
+      @include b.mq(sm){
+         font-size:b.px2vw(15);
+         line-height: 1.6;
+      }
+   }
+}
