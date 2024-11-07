@@ -49,6 +49,9 @@ export type Member = {
 export const getNewsList = async (queries?:MicroCMSQueries) =>{
   const listData = await client
     .getList<News>({
+      customRequestInit: {
+        cache: "no-store",
+      },
       endpoint:"news",
       queries,
     });
@@ -60,6 +63,9 @@ export const getNewsDetail = async (
   queries?:MicroCMSQueries
 ) =>{
   const detailData = await client.getListDetail<News>({
+    customRequestInit: {
+      cache: "no-store",
+    },
     endpoint:"news",
     contentId,
     queries,
