@@ -1,5 +1,6 @@
 import Image from  "next/image";
 import styles from  "./index.module.css";
+import Date from "../Date";
 import Button01 from "@/app/_components/Button01";
 import { News } from "@/app/_libs/microcms";
 
@@ -19,7 +20,7 @@ export default function NewsList({ news }:Props){
                     <div className="news-box">
                         {news.map((article) =>(
                         <a key={article.id} href="#" className="news-box__container">
-                            <div className="news-box__day">{article.publishedAt}</div><p className="news-box__text">{article.title}</p>
+                            <Date date={article.publishedAt} /><p className="news-box__text">{article.title}</p>
                         </a>
                         ))}
                     </div>
