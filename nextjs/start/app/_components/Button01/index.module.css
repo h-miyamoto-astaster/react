@@ -1,0 +1,14 @@
+.button01{
+   display:block;
+   width:300px;
+   height:50px;
+   line-height: 50px;
+   margin:auto;
+   margin-top: 60px;
+   border-radius:25px;
+   text-align:center;
+   font-size:18px;
+   font-weight: 700;
+   color:white;
+   background-color: #DD1B57;
+}

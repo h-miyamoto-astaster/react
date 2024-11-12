@@ -1,0 +1,14 @@
+.news-box__day{
+   width: -webkit-fit-content;
+   width: -moz-fit-content;
+   width: fit-content;
+   flex-shrink: 0;
+   line-height: 1.8;
+   font-size: 15px;
+   font-weight: 500;
+}
+@media screen and (max-width: 767px) {
+   .news-box__day {
+     font-size: 4vw;
+   }
+}
