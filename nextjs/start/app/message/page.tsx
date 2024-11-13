@@ -23,7 +23,7 @@ export default function Page(){
                     <div className="message-first__img">
                         <Image
                             className="nextjsimage"
-                            src="../img/message/message-img.png"
+                            src="/img/message/message-img.png"
                             alt=""
                             fill
                         />
@@ -38,10 +38,10 @@ export default function Page(){
 
             <section className="message-second">
             <picture>
-                <source srcSet="../img/message/message-second-sp.jpg" media="(max-width:767px)" />
+                <source srcSet="/img/message/message-second-sp.jpg" media="(max-width:767px)" />
                 <Image
                     className="nextjsimage"
-                    src="../img/message/message-second.jpg"
+                    src="/img/message/message-second.jpg"
                     alt=""
                     fill
                 />

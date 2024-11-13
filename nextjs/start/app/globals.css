@@ -780,5 +780,5 @@ body {
 .nextjsimage{
   object-fit: contain;
   position: relative !important;
-  width: auto !important;
+  height:auto !important;
 }
