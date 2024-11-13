@@ -1,0 +1,104 @@
+
+.message-first {
+    margin-top: 60px;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first {
+      margin-top: 8vw;
+    }
+  }
+  .message-first__inner {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+    padding: 0px 20px;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first__inner {
+      max-width: initial;
+      padding: 0px 5.3333333333vw;
+    }
+  }
+  .message-first__title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    color: #DD1B57;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first__title {
+      font-size: 6.4vw;
+    }
+  }
+  .message-first__sub {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first__sub {
+      margin-top: 5.3333333333vw;
+      font-size: 4vw;
+    }
+  }
+  .message-first__box {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 35px;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first__box {
+      margin-top: 8vw;
+    }
+  }
+  .message-first__box:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .message-first__img {
+    width: 100px;
+    float: left;
+    margin-top: 5px;
+    margin-right: 20px;
+    padding-bottom: 20px;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first__img {
+      margin-top: 1.3333333333vw;
+      margin-right: 5.3333333333vw;
+      padding-bottom: 2.6666666667vw;
+    }
+  }
+  .message-first__text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+  @media screen and (max-width: 767px) {
+    .message-first__text {
+      font-size: 4vw;
+    }
+  }
+  
+  .message-second {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+    margin-top: 80px;
+    padding: 0px 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .message-second {
+      max-width: initial;
+      margin-top: 13.3333333333vw;
+      padding: 0 5.3333333333vw;
+    }
+  }

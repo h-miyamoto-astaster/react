@@ -1,0 +1,29 @@
+.mv-single {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 190px;
+    background-image: url(./img/mv-single.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  @media screen and (max-width: 767px) {
+    .mv-single {
+      height: 42.6666666667vw;
+      background-image: url(./img/mv-single-sp.jpg);
+    }
+  }
+  .mv-single__title {
+    text-align: center;
+    margin: auto;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: white;
+  }
+  @media screen and (max-width: 767px) {
+    .mv-single__title {
+      font-size: 7.4666666667vw;
+    }
+  }

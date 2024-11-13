@@ -3,3 +3,6 @@ export type News = {
     title:string;
     publishedAt:string;
 }
+export type Title = {
+    title:string;
+}
