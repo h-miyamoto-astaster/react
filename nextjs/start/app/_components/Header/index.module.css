@@ -1,0 +1,173 @@
+.header {
+   position: relative;
+   width: 100%;
+   height: 90px;
+   padding: 0px 65px;
+ }
+ @media screen and (max-width: 767px) {
+   .header {
+     height: 16vw;
+     padding: 0px 5.3333333333vw;
+   }
+ }
+ .header__container {
+   display: flex;
+   align-items: center;
+   height: 90px;
+ }
+ @media screen and (max-width: 767px) {
+   .header__container {
+     height: 16vw;
+   }
+ }
+ .header__logo {
+   display: block;
+   width: 167px;
+   transition: 0.3s;
+ }
+ .header__logo:hover {
+   opacity: 0.6;
+ }
+ @media screen and (max-width: 767px) {
+   .header__logo {
+     width: 28.5333333333vw;
+   }
+ }
+ .header__menulist {
+   display: flex;
+   align-items: center;
+   -webkit-column-gap: 30px;
+      -moz-column-gap: 30px;
+           column-gap: 30px;
+   height: 90px;
+   margin-left: auto;
+ }
+ @media screen and (max-width: 767px) {
+   .header__menulist {
+     display: none;
+   }
+ }
+ .header__menu a {
+   display: block;
+   font-size: 16px;
+   font-weight: bold;
+ }
+ .header__menu a:hover {
+   color: #DD1B57;
+ }
+ .header__btn {
+   display: none;
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: 2;
+ }
+ @media screen and (max-width: 767px) {
+   .header__btn {
+     display: block;
+     width: 16vw;
+     height: 16vw;
+   }
+ }
+ .header-spmenu {
+   display: none;
+   position: fixed;
+   top: 0;
+   right: 0;
+   z-index: 1;
+   color: white;
+   background-color: #DD1B57;
+ }
+ @media screen and (max-width: 767px) {
+   .header-spmenu {
+     display: block;
+     position: fixed;
+     top: 0;
+     right: 0;
+     width: 53.3333333333vw;
+     height: 100%;
+     transition: 0.3s;
+     -webkit-transform: translateX(100%);
+             transform: translateX(100%);
+   }
+   .header-spmenu.active {
+     -webkit-transform: translateX(0%);
+             transform: translateX(0%);
+   }
+ }
+ @media screen and (max-width: 767px) {
+   .header-spmenu__inner {
+     padding-top: 24vw;
+     padding-left: 10.6666666667vw;
+   }
+ }
+ @media screen and (max-width: 767px) {
+   .header-spmenu__item a {
+     display: block;
+     margin-top: 6.6666666667vw;
+     font-size: 4.2666666667vw;
+     font-weight: 700;
+     transition: 0.3s;
+   }
+   .header-spmenu__item a:hover {
+     opacity: 0.6;
+   }
+ }
+ 
+ /*ハンバーガーメニュー*/
+ .openbtn1 {
+   display: inline-block;
+   position: relative; /*ボタン内側の基点となるためrelativeを指定*/
+   background: #DD1B57;
+   cursor: pointer;
+   width: 16vw;
+   height: 16vw;
+ }
+ 
+ /*ボタン内側*/
+ .openbtn1 span {
+   display: inline-block;
+   transition: all 0.4s; /*アニメーションの設定*/
+   position: absolute;
+   left: 0;
+   right: 0;
+   margin: auto;
+   height: 0.5333333333vw;
+   background: #fff;
+   width: 50%;
+ }
+ 
+ .openbtn1 span:nth-of-type(1) {
+   top: 5.3333333333vw;
+ }
+ 
+ .openbtn1 span:nth-of-type(2) {
+   top: 8vw;
+ }
+ 
+ .openbtn1 span:nth-of-type(3) {
+   top: 10.6666666667vw;
+ }
+ 
+ /*activeクラスが付与されると線が回転して×に*/
+ .openbtn1.active span:nth-of-type(1) {
+   top: 6.1333333333vw;
+   left: 0vw;
+   -webkit-transform: translateY(1.6vw) rotate(-45deg);
+           transform: translateY(1.6vw) rotate(-45deg);
+   width: 60%;
+ }
+ 
+ .openbtn1.active span:nth-of-type(2) {
+   opacity: 0; /*真ん中の線は透過*/
+ }
+ 
+ .openbtn1.active span:nth-of-type(3) {
+   top: 9.3333333333vw;
+   left: 0vw;
+   -webkit-transform: translateY(-1.6vw) rotate(45deg);
+           transform: translateY(-1.6vw) rotate(45deg);
+   width: 60%;
+ }
+ 
+ /*ハンバーガーメニューここまで*/
