@@ -42,21 +42,31 @@ export default function Page(){
          <section className="about-first">
             <div className="about-first__inner">
                <table className="about-first__table">
-                  <tr>
-                     <th>社名</th><td>株式会社START</td>
-                  </tr>
-                  <tr>
-                     <th>設立</th><td>2025.02.10</td>
-                  </tr>
-                  <tr>
-                     <th>代表取締役</th><td>ショーン・デイビット・ジュニア</td>
-                  </tr>
-                  <tr>
-                     <th>資本金</th><td>10,000,000円</td>
-                  </tr>
-                  <tr>
-                     <th>所在地</th><td>〒555-5555 東京都千代田区 スタートビルディング 606</td>
-                  </tr>
+                  <thead>
+                     <tr>
+                        <th>社名</th><td>株式会社START</td>
+                     </tr>
+                  </thead>
+                  <thead>
+                     <tr>
+                        <th>設立</th><td>2025.02.10</td>
+                     </tr>
+                  </thead>
+                  <thead>
+                     <tr>
+                        <th>代表取締役</th><td>ショーン・デイビット・ジュニア</td>
+                     </tr>
+                  </thead>
+                  <thead>
+                     <tr>
+                        <th>資本金</th><td>10,000,000円</td>
+                     </tr>
+                  </thead>
+                  <thead>
+                     <tr>
+                        <th>所在地</th><td>〒555-5555 東京都千代田区 スタートビルディング 606</td>
+                     </tr>
+                  </thead>
                </table>
             </div>
          </section>

@@ -1,8 +1,14 @@
 import Image from "next/image";
 import styles from "./index.module.css";
 
+let btnClick = () =>{
+   console.log("ok");
+};
+
 export default function Header(){
-    return(
+
+   
+   return(
       <header className="header">
          <div className="header__container">
             <a className="header__logo" href="#">
@@ -26,7 +32,7 @@ export default function Header(){
                <li className="header-spmenu__item"><a href="./about/index.html">会社概要</a></li>
             </div>
          </ul>
-         <div className="header__btn">
+         <div className="header__btn" onClick="btnClick">
             <div className="openbtn1"><span></span><span></span><span></span></div>
          </div>
       </header>
