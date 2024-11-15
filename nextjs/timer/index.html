@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="./assets/js/cmn.min.js"></script>
 </head>
-<body onload="init()">
+<body>
 
 <div id="loading">
     <div class="loader"></div>
@@ -33,16 +33,18 @@
         <label for="taskname" class="tasklabel">タスク名を入力</label>
         <input type="text" id="taskname" class="taskname" />
     </div>
-
+    
+    <div id="time" class="time"></div>
+    
     <div class="btnarea">
         <button id="btn01" class="btn01">スタート</button>
         <button id="btn02" class="btn02">ストップ</button>
+        <button id="btn03" class="btn03">レコード</button>
     </div>
     
-    <ul class="endtask">
-        <li class="endtask__item">テスト</li>
+    <ul id="endtask" class="endtask">
+        <li id="endtask__item" class="endtask__item">テスト</li>
     </ul>
-    <div class="time"></div>
 </div>
 
 </body>
