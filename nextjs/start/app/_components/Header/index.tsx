@@ -1,26 +1,35 @@
+"use client";
+import { useRef } from 'react';
+import { useState } from "react";
+import cx from "classnames";
+
 import Image from "next/image";
 import styles from "./index.module.css";
 
 export default function Header(){
 
-   let btnClick = () =>{
+   /*let header_btnRef = useRef(null);
+   let header_spmenuRef = useRef(null);
+   let openbtnRef = useRef(null);*/
+
+   let [isActive,setActive] = useState<boolean>(false);
+
+   let toActive = () => setActive(true);
+   /*let btnClick = () =>{
    
       console.log("ok");
-      let header_btn = document.getElementById("header__btn");
-      let header_spmenu = document.getElementById("header-spmenu");
-      let openBtn1 = document.querySelector("#header__btn #openbtn1");
       header_btn.addEventListener('click',function(){
-         if(header_btn.classList.contains("active")){
-            openBtn1.classList.remove("active");
-            header_btn.classList.remove("active");
-            header_spmenu.classList.remove("active");
+         if(header_btnRef.classList.contains("active")){
+            openbtnRef.classList.remove("active");
+            header_btnRef.classList.remove("active");
+            header_spmenuRef.classList.remove("active");
          }else{
-            openBtn1.classList.add("active");
-            header_btn.classList.add("active");
-            header_spmenu.classList.add("active");
+            openbtnRef.classList.add("active");
+            header_btnRef.classList.add("active");
+            header_spmenuRef.classList.add("active");
          }
       });
-   };
+   };*/
 
    return(
       <header className="header">
@@ -46,8 +55,8 @@ export default function Header(){
                <li className="header-spmenu__item"><a href="./about/index.html">会社概要</a></li>
             </div>
          </ul>
-         <div id="header__btn" className="header__btn" onClick={btnClick}>
-            <div className="openbtn1"><span></span><span></span><span></span></div>
+         <div id="header__btn" className="header__btn" onClick={toActive}>
+            <div className={cx(styles.openbtn1, isActive && styles.active)}><span></span><span></span><span></span></div>
          </div>
       </header>
     )
