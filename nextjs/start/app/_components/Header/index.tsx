@@ -14,7 +14,7 @@ export default function Header(){
 
    let [isActive,setActive] = useState<boolean>(false);
 
-   let toActive = () => setActive(true);
+   let toActive = () => setActive(!isActive);
    /*let btnClick = () =>{
    
       console.log("ok");
