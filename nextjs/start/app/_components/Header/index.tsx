@@ -48,14 +48,14 @@ export default function Header(){
                <li className="header__menu"><a href="./about/index.html">会社概要</a></li>
             </ul>
          </div>
-         <ul id="header-spmenu" className="header-spmenu">
+         <ul id="header-spmenu" className={cx(styles.header_spmenu, isActive && styles.active)}>
             <div className="header-spmenu__inner">
                <li className="header-spmenu__item"><a href="#">ホーム</a></li>
                <li className="header-spmenu__item"><a href="./message/index.html">メッセージ</a></li>
                <li className="header-spmenu__item"><a href="./about/index.html">会社概要</a></li>
             </div>
          </ul>
-         <div id="header__btn" className="header__btn" onClick={toActive}>
+         <div id="header__btn" className={cx(styles.header__btn, isActive && styles.active)} onClick={toActive}>
             <div className={cx(styles.openbtn1, isActive && styles.active)}><span></span><span></span><span></span></div>
          </div>
       </header>
