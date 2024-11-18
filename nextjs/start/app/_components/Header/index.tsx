@@ -2,11 +2,15 @@
 import { useRef } from 'react';
 import { useState } from "react";
 import cx from "classnames";
+import { Root_path } from "@/app/_libs/microcms";
 
 import Image from "next/image";
 import styles from "./index.module.css";
 
-export default function Header(){
+type Props = {
+   root_path:Root_path["root_path"]
+}
+export default function Header({root_path}:Props){
 
    /*let header_btnRef = useRef(null);
    let header_spmenuRef = useRef(null);
@@ -43,16 +47,16 @@ export default function Header(){
                />
             </a>
             <ul className="header__menulist">
-               <li className="header__menu"><a href="#">ホーム</a></li>
-               <li className="header__menu"><a href="./message/index.html">メッセージ</a></li>
-               <li className="header__menu"><a href="./about/index.html">会社概要</a></li>
+               <li className="header__menu"><a href="{root_path}">ホーム</a></li>
+               <li className="header__menu"><a href="{root_path}message/index.html">メッセージ</a></li>
+               <li className="header__menu"><a href="{root_path}about/index.html">会社概要</a></li>
             </ul>
          </div>
          <ul id="header-spmenu" className={cx(styles.header_spmenu, isActive && styles.active)}>
             <div className="header-spmenu__inner">
-               <li className="header-spmenu__item"><a href="#">ホーム</a></li>
-               <li className="header-spmenu__item"><a href="./message/index.html">メッセージ</a></li>
-               <li className="header-spmenu__item"><a href="./about/index.html">会社概要</a></li>
+               <li className="header-spmenu__item"><a href="{root_path}">ホーム</a></li>
+               <li className="header-spmenu__item"><a href="{root_path}message/index.html">メッセージ</a></li>
+               <li className="header-spmenu__item"><a href="{root_path}about/index.html">会社概要</a></li>
             </div>
          </ul>
          <div id="header__btn" className={cx(styles.header__btn, isActive && styles.active)} onClick={toActive}>

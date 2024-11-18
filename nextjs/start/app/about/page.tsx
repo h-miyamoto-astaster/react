@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Title } from "@/app/_libs/microcms";
 import { News } from "@/app/_libs/microcms";
+import { Root_path } from "@/app/_libs/microcms";
 
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
@@ -35,7 +36,7 @@ export default function Page(){
    
    return(
       <>
-         <Header />
+         <Header root_path={"../"} />
 
          <Mvsingle title={"会社概要"} />
 

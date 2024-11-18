@@ -9,7 +9,7 @@ import Mvsingle from "@/app/_components/Mvsingle";
 export default function Page(){
     return(
         <>
-            <Header />
+            <Header root_path={"../"}/>
 
             <Mvsingle title={"メッセージ"}/>
 

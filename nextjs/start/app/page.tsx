@@ -32,7 +32,7 @@ export default function Home(){
   const sliceData = data.contents.slice(0,2);
   return (
   <>
-  <Header />
+  <Header root_path={"./"}/>
 <div className="mv">
   <div className="mv__box">
     <h2 className="mv__title">START</h2>

@@ -6,3 +6,6 @@ export type News = {
 export type Title = {
     title:string;
 }
+export type Root_path = {
+    root_path:string;
+}
