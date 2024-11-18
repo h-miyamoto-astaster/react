@@ -4,6 +4,7 @@ import { useState } from "react";
 import cx from "classnames";
 import { Root_path } from "@/app/_libs/microcms";
 
+
 import Image from "next/image";
 import styles from "./index.module.css";
 
@@ -38,7 +39,7 @@ export default function Header({root_path}:Props){
    return(
       <header className="header">
          <div className="header__container">
-            <a className="header__logo" href="#">
+            <a className="header__logo" href={root_path}>
                <Image
                className="nextjsimage"
                src="/img/logo.png"
@@ -47,16 +48,16 @@ export default function Header({root_path}:Props){
                />
             </a>
             <ul className="header__menulist">
-               <li className="header__menu"><a href="{root_path}">ホーム</a></li>
-               <li className="header__menu"><a href="{root_path}message/index.html">メッセージ</a></li>
-               <li className="header__menu"><a href="{root_path}about/index.html">会社概要</a></li>
+               <li className="header__menu"><a href={root_path}>ホーム</a></li>
+               <li className="header__menu"><a href={root_path + "message/"}>メッセージ</a></li>
+               <li className="header__menu"><a href={root_path + "about/"}>会社概要</a></li>
             </ul>
          </div>
          <ul id="header-spmenu" className={cx(styles.header_spmenu, isActive && styles.active)}>
             <div className="header-spmenu__inner">
-               <li className="header-spmenu__item"><a href="{root_path}">ホーム</a></li>
-               <li className="header-spmenu__item"><a href="{root_path}message/index.html">メッセージ</a></li>
-               <li className="header-spmenu__item"><a href="{root_path}about/index.html">会社概要</a></li>
+               <li className="header-spmenu__item"><a href={root_path}>ホーム</a></li>
+               <li className="header-spmenu__item"><a href={root_path + "message/"}>メッセージ</a></li>
+               <li className="header-spmenu__item"><a href={root_path + "about/"}>会社概要</a></li>
             </div>
          </ul>
          <div id="header__btn" className={cx(styles.header__btn, isActive && styles.active)} onClick={toActive}>

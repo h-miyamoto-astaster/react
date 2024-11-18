@@ -1,4 +1,10 @@
 import styles from "./index.module.css";
+import { Root_path } from "@/app/_libs/microcms";
+
+
+type Props = {
+    root_path:Root_path["root_path"];
+}
 
 export default function Footer(){
     return(
