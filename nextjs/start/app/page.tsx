@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Image from "next/image";
+import { getNewsList } from "@/app/_libs/microcms";
 
 import { News } from "@/app/_libs/microcms";
 
@@ -7,7 +8,7 @@ import NewsList from "@/app/_components/NewsList";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer"
 
-const data:{
+/*const data:{
   contents:News[] } = {
     contents:[
       {
@@ -27,9 +28,11 @@ const data:{
       },
     ],
   };
+*/
+export default async function Home(){
+  //const sliceData = data.contents.slice(0,2);
+  const data = await getNewsList()
 
-export default function Home(){
-  const sliceData = data.contents.slice(0,2);
   return (
   <>
   <Header root_path={"./"}/>
@@ -40,7 +43,7 @@ export default function Home(){
   </div>
 </div>
 
-<NewsList news={ sliceData } />
+<NewsList news={ data.contents } />
 
 <section className="service">
   <div className="service__inner">

@@ -9,6 +9,7 @@ type Props ={
 }
 
 export default function NewsList({ news }:Props){
+    console.log(news);
     if(news.length === 0){
         return <p>記事がありません</p>
     }

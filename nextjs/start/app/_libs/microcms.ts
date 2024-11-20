@@ -5,19 +5,20 @@ import type {
     MicroCMSListContent,
 } from "microcms-js-sdk";
 
-export type News = {
+/*export type News = {
     id:string;
     title:string;
     content:string;
     image:MicroCMSImage;
     publishedAt:string;
-}
+}*/
 
-/*export type News = {
+export type News = {
     id:string;
     title:string;
     publishedAt:string;
-}*/
+} & MicroCMSListContent;
+
 export type Title = {
     title:string;
 }
