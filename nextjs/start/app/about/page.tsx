@@ -91,7 +91,7 @@ export default function Page(){
 
          <NewsList news={ sliceData }/>
 
-         <Footer />
+         <Footer root_path={"../"}/>
       </>
    )
 }

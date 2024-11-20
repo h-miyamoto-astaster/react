@@ -48,7 +48,7 @@ export default function Page(){
             </picture>
             </section>
 
-            <Footer />
+            <Footer root_path={"../"}/>
         </>
     )
 }
