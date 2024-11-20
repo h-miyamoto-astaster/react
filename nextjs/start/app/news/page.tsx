@@ -6,6 +6,10 @@ import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 import Mvsingle from "@/app/_components/Mvsingle";
 
+/*
+MICROCMS_API_KEY=RpTlzi0UHaGjIWeT4r5YudvlhILeAsep7On4
+MICROCMS_SERVICE_DOMAIN=mok19u4ete
+*/
 export default function Page(){
     return(
         <>
