@@ -538,6 +538,7 @@ body {
   border:1px solid dimgray;
 }
 .btnarea{
+  position:relative;
   display:flex;
   column-gap:30px;
 }
@@ -577,7 +578,17 @@ body {
   color:white;
   background-color: lightgreen;
 }
+.alert{
+  position:absolute;
+  bottom:-25px;
+  right:0;
+  text-align:right;
+  font-size:15px;
+  color:red;
+}
 .endtask{
   margin-top: 50px;
+  font-size:18px;
 }
+
 /*# sourceMappingURL=maps/style.css.map */
